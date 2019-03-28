@@ -2,9 +2,13 @@
   "name": "arithmetic-coding",
   "version": "1.0.0",
   "description": "Arithmetic coding implementation",
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": {
+    "ari-coding": "bin/index.js"
+  },
   "scripts": {
-    "test": "mocha --timeout 10000",
+    "test": "mocha --timeout 10000 && npm run clean",
+    "clean": "rm test/txt/*-encoded.txt test/txt/*-decoded.txt",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "patch": "npm version patch && git push origin master && git push origin --tags",
@@ -28,6 +32,9 @@
   },
   "homepage": "https://github.com/upupming/arithmetic-coding#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.19.0",
+    "concat-stream": "^2.0.0",
     "long": "^4.0.0"
   },
   "devDependencies": {

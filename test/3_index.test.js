@@ -1,5 +1,5 @@
 require('should');
-const ariCoding = require('../index');
+const ariCoding = require('../src/index');
 var fs = require('fs');
 
 describe('Package test', function() {

@@ -11,7 +11,7 @@ module.exports = class BitOutputStream {
    * @param {string} outputfile file path
    */
   constructor(outputfile) {
-    // The underlying file starem to write to
+    // The underlying file stream to write to
     this._output = fs.openSync(outputfile, 'w');
     // The accumulated bits for the current byte,
     // always in range [0x00, 0xFF]

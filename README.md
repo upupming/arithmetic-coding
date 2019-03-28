@@ -8,8 +8,16 @@
 
 ## Installation
 
+Install as module:
+
 ```js
-npm i arithmetiic-coding
+npm i arithmetic-coding
+```
+
+Or install as global CLI:
+
+```js
+npm i -g arithmetic-coding
 ```
 
 ## API
@@ -17,7 +25,7 @@ npm i arithmetiic-coding
 Simply call `encode` and `decode` function.
 
 ```js
-const ariCoding = require('arithmetiic-coding');
+const ariCoding = require('arithmetic-coding');
 // Encode
 ariCoding.encode(__dirname + '/txt/long.txt', __dirname + '/txt/long-encoded.txt');
 // Decode
@@ -26,4 +34,15 @@ ariCoding.decode(__dirname + '/txt/long-encoded.txt', __dirname + '/txt/long-dec
 
 ## Command-line interface
 
-> Under developing...
+```js
+$ ari-coding -h
+Usage: index [options] [command]
+
+Options:
+  -v, --version              output the version number
+  -h, --help                 output usage information
+
+Commands:
+  encode|e [options] <file>  encode a file
+  decode|d [options] <file>  decode a file
+```
