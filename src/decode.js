@@ -4,6 +4,11 @@ const BitInputStream = require('./bit-input-stream');
 const Long = require('long');
 const ArithmeticDecoder = require('./arithmetic-decoder');
 
+/**
+ * Encode a file using arithmetic coding algorithm
+ * @param {string} inputfile Absolute path of the input file
+ * @param {string} outputfile Absolute path of the output file
+ */
 function decode(inputfile, outputfile) {
   // const inStream = fs.createReadStream(inputfile);
   // const outStream = fs.createWriteStream(outputfile);

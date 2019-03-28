@@ -11,39 +11,38 @@ const ArithmeticEncoder = require('./arithmetic-encoder');
  * @param {string} inputfile obsolute path of a file
  */
 function getFrequencies(inputfile) {
-  return new Promise((resolve, reject) => {
-    let freqs = new FrequencyTable(
-      new Array(257).fill(0)
-    );
-    fs.open(inputfile, 'r', function(err, fd) {
-      if (err) {
-        reject(err);
-        return;
+  let input = fs.openSync(inputfile, 'r');
+  let freqs = new FrequencyTable(
+    new Array(257).fill(0)
+  );
+  const temp = Buffer.alloc(100);
+  let bytesRead;
+  for (;;) {
+    if((bytesRead = fs.readSync(input, temp, 0, temp.length, null)) === 0) {
+      break;
+    } else {
+      for (let i = 0; i < bytesRead; i++) {
+        freqs.increment(temp[i]);
       }
-      const buffer = Buffer.alloc(1);
-      for (;;) {
-        const num = fs.readSync(fd, buffer, 0, 1, null);
-        if (num === 0) {
-          fs.close(fd, () => resolve(freqs));
-          break;
-        }
-        freqs.increment(buffer[0]);
-        // console.log(buffer[0], freqs.get(buffer[0]));
-      }
-    });
-  });
+    }
+  }
+  return freqs;
 }
 
-async function encode(inputfile, outputfile) {
-  let freqs = await getFrequencies(inputfile);
+/**
+ * Decode a file using arithmetic coding algorithm
+ * @param {string} inputfile Absolute path of the input file
+ * @param {string} outputfile Absolute path of the output file
+ */
+function encode(inputfile, outputfile) {
+  let freqs = getFrequencies(inputfile);
   // EOF symbol gets a frequency of 1
   freqs.increment(256);
   
-  const inStream = fs.createReadStream(inputfile);
   const bitout = new BitOutputStream(outputfile);
   
   writeFrequencies(bitout, freqs);
-  compress(freqs, inStream, bitout);
+  compress(freqs, inputfile, bitout);
 }
 
 /**
@@ -74,25 +73,23 @@ function write_int(bitout, numbits, value) {
 /**
  * 
  * @param {FrequencyTable} freqs 
- * @param {ReadableStream} inStream 
+ * @param {string} inputfile 
  * @param {BitOutputStream} bitout 
  */
-async function compress(freqs, inStream, bitout) {
+function compress(freqs, inputfile, bitout) {
   let enc = new ArithmeticEncoder(32, bitout);
-  await new Promise(resolve => {
-    inStream.on('data', data => {
-      // console.log('data = ', data);
-      for (let byte of data) {
-        // console.log(byte);
-        // console.log('writing', byte);
-        enc.write(freqs, byte);
+  let input = fs.openSync(inputfile, 'r');
+  for(;;) {
+    const temp = Buffer.alloc(100);
+    let bytesRead;
+    if ((bytesRead = fs.readSync(input, temp, 0, temp.length, null)) === 0) {
+      break;
+    } else {
+      for (let i = 0; i < bytesRead; i++) {
+        enc.write(freqs, temp[i]);
       }
-    });
-    inStream.on('end', () => {
-      // console.log('input stream closed');
-      resolve();
-    });
-  });
+    }
+  }
   // EOF
   enc.write(freqs, 256);
   // Flush remaining code bit
