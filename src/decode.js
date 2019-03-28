@@ -9,7 +9,7 @@ function decode(inputfile, outputfile) {
   // const outStream = fs.createWriteStream(outputfile);
   const bitin = new BitInputStream(inputfile);
   let freqs = readFrequencies(bitin);
-  console.log(`freqs.total = ${freqs.total}`);
+  // console.log(`freqs.total = ${freqs.total}`);
   decompress(freqs, bitin, outputfile);
 }
 
@@ -24,12 +24,12 @@ function readFrequencies(bitin) {
     return result;
   }
   let freqs = [];
-  let acc = 0;
+  // let acc = 0;
   for (let i = 0; i < 256; i++) {
     freqs[i] = readInt(32).toNumber();
-    console.log(`freqs[${i}] = `, freqs[i]);
-    acc += freqs[i];
-    console.log(`acc = ${acc}`);
+    // console.log(`freqs[${i}] = `, freqs[i]);
+    // acc += freqs[i];
+    // console.log(`acc = ${acc}`);
   }
   // console.log(freqs.reduce((a, b) => a+b));
   // EOF symbol

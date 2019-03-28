@@ -37,14 +37,14 @@ module.exports = class BitInputStream {
       // console.log(`this._numbitsremaining0 = ${this._numbitsremaining}`);
       let temp = Buffer.alloc(1);
       let numOfBytesRead = fs.readSync(this._input, temp, 0, 1, null);
-      console.log(`numOfBytes read: ${numOfBytesRead}`);
+      // console.log(`numOfBytes read: ${numOfBytesRead}`);
       // console.log(`position = ${this._position}`);
       if (numOfBytesRead === 0) {
         this._currentbyte = -1;
         return -1;
       }
       this._currentbyte = temp[0];
-      console.log('Byte read:', temp);
+      // console.log('Byte read:', temp);
       // console.log(this._currentbyte);
       this._numbitsremaining = 8;
       // console.log(`this._numbitsremaining1 = ${this._numbitsremaining}`);

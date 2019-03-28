@@ -56,7 +56,7 @@ module.exports = class ArithmeticDecoder {
     this._code = new Long(0, 0);
     for (let i = 0; i < this._num_state_bits; i++) {
       this._code = this._code.shiftLeft(1).or(this.readCodeBit());
-      console.log(`this._code_init = ${this._code}`);
+      // console.log(`this._code_init = ${this._code}`);
     }
     // console.log(`this._code = ${this._code}`);
   }
@@ -75,7 +75,7 @@ module.exports = class ArithmeticDecoder {
     let range = this._high.sub(this._low).add(1);
     let offset = this._code.sub(this._low);
     let value = offset.add(1).mul(total).sub(1).div(range);
-    console.log(`this._code_cal = ${this._code}, offset = ${offset}, value = ${value}`);
+    // console.log(`this._code_cal = ${this._code}, offset = ${offset}, value = ${value}`);
     assert(value.mul(range).div(total).lessThanOrEqual(offset));
     // console.log(`value = ${value.toString(16)}`);
     // console.log(`total = ${total.toString(16)}`);
@@ -85,16 +85,16 @@ module.exports = class ArithmeticDecoder {
     // Find highest symbol such that freqs.get_low(symbol) <= value.
     let start = 0;
     let end = freqs.symbolLimit;
-    console.log(`start = ${start}, end = ${end}, value = ${value.toNumber()}`);
+    // console.log(`start = ${start}, end = ${end}, value = ${value.toNumber()}`);
     while (end - start > 1) {
       let middle = (start + end) >>> 1;
-      console.log(`freqs.getLow(middle) = ${freqs.getLow(middle)}`);
+      // console.log(`freqs.getLow(middle) = ${freqs.getLow(middle)}`);
       if (value.lessThan(freqs.getLow(middle))) {
         end = middle;
       } else {
         start = middle;
       }
-      console.log(`start = ${start}, end = ${end}`);
+      // console.log(`start = ${start}, end = ${end}`);
     }
 
     assert(start + 1 === end);
@@ -108,7 +108,7 @@ module.exports = class ArithmeticDecoder {
     if (!(this._low.lessThanOrEqual(this._code) && this._code.lessThanOrEqual(this._high))) {
       throw new RangeError('Code out of range');
     }
-    console.log('symbol', symbol);
+    // console.log('symbol', symbol);
     return symbol;
   }
 
@@ -116,7 +116,7 @@ module.exports = class ArithmeticDecoder {
   // of stream is treated as an infinite number of trailing zeros.
   readCodeBit() {
     let temp = this._input.read();
-    console.log(`readCodeBit: ${temp}`);
+    // console.log(`readCodeBit: ${temp}`);
     if (temp === -1) {
       temp = 0;
     }
@@ -140,8 +140,8 @@ module.exports = class ArithmeticDecoder {
     // State check
     let low = this._low;
     let high = this._high;
-    console.log(`======== Updating ${symbol} =========`);
-    console.log(`this._low = ${this._low.toString(16)}`, `this._high = ${this._high.toString(16)}`);
+    // console.log(`======== Updating ${symbol} =========`);
+    // console.log(`this._low = ${this._low.toString(16)}`, `this._high = ${this._high.toString(16)}`);
     if (low.greaterThanOrEqual(high) || low.and(this._state_mask).notEquals(low) || high.and(this._state_mask).notEquals(high)) {
       throw RangeError('Low or high out of range');
     }
@@ -154,8 +154,8 @@ module.exports = class ArithmeticDecoder {
     let total = freqs.total;
     let symlow = freqs.getLow(symbol);
     let symhigh = freqs.getHigh(symbol);
-    console.log(`symlow = ${symlow.toString(16)}`, `symhigh = ${symhigh.toString(16)}`);
-    console.log(`total = ${total}`);
+    // console.log(`symlow = ${symlow.toString(16)}`, `symhigh = ${symhigh.toString(16)}`);
+    // console.log(`total = ${total}`);
     if (symlow === symhigh) {
       throw Error('Symbol has zero frequency');
     }
@@ -168,7 +168,7 @@ module.exports = class ArithmeticDecoder {
     let newhigh = low.add(range.mul(symhigh).div(total)).sub(1);
     this._low = newlow;
     this._high = newhigh;
-    console.log(`newlow = ${newlow.toString(16)}`, `newhigh = ${newhigh.toString(16)}`);
+    // console.log(`newlow = ${newlow.toString(16)}`, `newhigh = ${newhigh.toString(16)}`);
 
     // While low and high have the same top bit value, shift them out
     while (((this._low.xor(this._high)).and(this._half_range)).equals(0)) {
@@ -189,13 +189,13 @@ module.exports = class ArithmeticDecoder {
 
   _shift() {
     this._code = this._code.shiftLeft(1).and(this._state_mask).or(this.readCodeBit());
-    console.log(`this._code_shift = ${this._code}`);
+    // console.log(`this._code_shift = ${this._code}`);
   }
   _underflow() {
     this._code = this._code.and(this._half_range).or(
       this._code.shiftLeft(1).and(this._state_mask.shiftRightUnsigned(1))
     ).or(this.readCodeBit());
-    console.log(`this._code_underflow = ${this._code}`);
+    // console.log(`this._code_underflow = ${this._code}`);
   }
   finish() {
     this._input.close();
