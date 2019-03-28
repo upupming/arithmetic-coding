@@ -1,0 +1,32 @@
+
+	
+Data Compression with Arithmetic Encoding
+Arithmetic encoders are better suited for adaptive models than Huffman coding, but they can be challenging to implement. 
+
+November 04, 2014
+URL:http://www.drdobbs.com/cpp/data-compression-with-arithmetic-encodin/240169251 
+
+
+Arithmetic coding is a common algorithm used in both lossless and lossy data compression algorithms. It is an entropy encoding technique, in which the frequently seen symbols are encoded with fewer bits than lesser seen symbols. It has some advantages over well-known techniques such as Huffman coding. This article describes the CACM87 implementation of arithmetic coding in detail, giving you a good understanding of all the details needed to implement it.
+
+On a historical note, this is an update of an article I wrote more than 20 years ago. That article was published in the print edition of Dr. Dobb's Journal, which meant that a lot of editing was done in order to avoid excessive page count. In particular, that Dr. Dobb's piece combined two topics: a description of arithmetic coding along with a discussion of compression using Prediction by Partial Matching (PPM).
+
+Because space considerations are no longer a limiting factor on the Web, I hope to do justice to the fascinating details of arithmetic coding. PPM, a worthy topic of its own, will be discussed in a later article. While perhaps long, I hope that this new effort will be the thorough explanation of the subject I wanted to do in 1991.
+
+I think the best way to understand arithmetic coding is to break it into two parts, and I'll use that idea in this article. First, I give a description of how arithmetic coding works, using regular floating-point arithmetic implemented using standard C++ data types. This approach allows for a completely understandable, but slightly impractical, implementation. In other words, it works, but it can only be used to encode very short messages.
+
+The second section of the article describes an implementation in which we switch to doing a special type of math on unbounded binary numbers. This is a somewhat mind-boggling topic in itself, so it helps if you already understand arithmetic coding: You don't have get hung up trying to learn two things at once.
+
+To wrap up, I present working sample code written in modern C++. It isn't the most optimized code in the world, but it is portable and easy to add to your existing projects. It should be perfect for learning and experimenting with this coding technique.
+
+Fundamentals
+The first thing to understand about arithmetic coding is what it produces. Arithmetic coding takes a message (often a file) composed of symbols (nearly always eight-bit characters), and converts it to a floating-point number greater than or equal to zero and less than one. This floating-point number can be quite long — effectively your entire output file is one long number — which means it is not a normal data type that you are accustomed to using in conventional programming languages. My implementation of the algorithm will have to create this floating-point number from scratch, bit by bit, and likewise read it in and decode it bit by bit. This encoding process is done incrementally. As each character in a file is encoded, a few bits will be added to the encoded message, so it is built up over time as the algorithm proceeds.
+
+The second thing to understand about arithmetic coding is that it relies on a model to characterize the symbols it is processing. The job of the model is to tell the encoder what the probability of a character is in a given message. If the model gives an accurate probability of the characters in the message, they will be encoded very close to optimally. If the model misrepresents the probabilities of symbols, the encoder may actually expand a message instead of compressing it!
+
+Encoding with Floating-Point Math
+The term arithmetic coding covers two separate processes: encoding messages and decoding them. I'll start by looking at the encoding process with sample C++ code that implements the algorithm in a very limited form using C++ double data. The code in this first section is only useful for exposition. That is, don't try to do any real compression with it.
+
+To perform arithmetic encoding, we first need to define a proper model. Remember that the function of the model is to provide probabilities of a given character in a message. The conceptual idea of an arithmetic coding model is that each symbol will own its own unique segment of the number line of real numbers between 0 and 1. It's important to note that there are many different ways to model character probabilities. Some models are static, never changing. Others are updated after every character is processed. The only two things that matter to us are that the model attempts to accurately predict the probability a character will appear, and that the encoder and decoder have identical models at all times.
+
+As an example, we can start with an encoder that can encode only an alphabet of 100 different characters. In a simple static model, we will start with capital letters, then move to the lower case letters. This means that the first symbol, 'A', will own the number line from 0 to .01, 'B' will own .01 to .02, and so on. (In all cases, this is strictly a half-closed interval, so the probability range

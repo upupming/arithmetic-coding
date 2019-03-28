@@ -1,0 +1,38 @@
+{
+  "name": "arithmetic-coding",
+  "version": "1.0.0",
+  "description": "Arithmetic coding implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upupming/arithmetic-coding.git"
+  },
+  "keywords": [
+    "arithmetic coding",
+    "encoding",
+    "lossless",
+    "compression"
+  ],
+  "author": "upupming",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/upupming/arithmetic-coding/issues"
+  },
+  "homepage": "https://github.com/upupming/arithmetic-coding#readme",
+  "dependencies": {
+    "bitwise": "^2.0.3",
+    "long": "^4.0.0",
+    "stream-to-promise": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.0.2",
+    "should": "^13.2.3"
+  }
+}

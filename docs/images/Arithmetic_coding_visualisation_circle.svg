@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+""" To recover the Python script to generate this SVG, delete the line above -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="-5800 -5800 11600 11600">
+ <title>Arithmetic coding visualisation circle</title>
+ <desc>Visualisation of the use of arithmetic coding to encode the message "WIKI" by CMG Lee. The innermost band gives is split into three intervals in ratios of the frequencies of the letters W, I and K, arranged clockwise from the top. Subsequent bands partition the interval corresponding to the next letter in the message. The two red lines represent values corresponding to the messages "WIKI" and "KIWI" for comparison. In the SVG image, hover over an interval to highlight it and show its statistics.</desc>
+ <style type="text/css">
+  #main, .nofade  { font-family:Helvetica,Arial,sans-serif; font-size:200px; text-anchor:middle;
+                    stroke-linejoin:round; stroke-width:5; stroke:#000000; fill:#000000;
+                    stroke-opacity:1;    fill-opacity:0.75; }
+  #main:hover     { stroke-opacity:0.1;  fill-opacity:0.5;  }
+  .active:hover   { stroke-opacity:1;    fill-opacity:1; cursor:crosshair; }
+  text            { stroke:none; }
+  .interval_label { font-family:Courier,monospace; font-weight:bold; }
+ </style>
+ <defs>
+  <path id="radius_1" d="M 0,-900 V -5000"/>
+  <g id="radius_4">
+   <use xlink:href="#radius_1" transform="scale(1.02)"/>
+   <use xlink:href="#radius_1"/>
+   <!-- <use xlink:href="#radius_1" transform="rotate( 5.625)"/> -->
+   <use xlink:href="#radius_1" transform="rotate(11.25 )"/>
+   <!-- <use xlink:href="#radius_1" transform="rotate(16.875)"/> -->
+  </g>
+  <g id="radius_16">
+   <use xlink:href="#radius_1" transform="scale(1.02)"/>
+   <use xlink:href="#radius_4"/>
+   <use xlink:href="#radius_4" transform="rotate(22.5)"/>
+   <use xlink:href="#radius_4" transform="rotate(45  )"/>
+   <use xlink:href="#radius_4" transform="rotate(67.5)"/>
+  </g>
+  <g id="radius_64">
+   <use xlink:href="#radius_1" transform="scale(1.02)"/>
+   <use xlink:href="#radius_16"/>
+   <use xlink:href="#radius_16" transform="rotate( 90)"/>
+   <use xlink:href="#radius_16" transform="rotate(180)"/>
+   <use xlink:href="#radius_16" transform="rotate(270)"/>
+  </g>
+ </defs>
+ <circle cx="0" cy="0" r="99999" fill="#ffffff"/>
+ <g id="main">
+  <circle cx="0" cy="0" r="6000" stroke="none" fill="#ffffff"/>
+  <use xlink:href="#radius_64"/>
+<!-- BEGIN_DYNAMIC_SVG { -->
+  <text transform="translate(0,-5500) scale(0.8,1)" x="0" dy="0.7ex" font-size="600">1, 0</text>
+  <text transform="translate(1062,-5394) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.00001</text>
+  <text transform="translate(2084,-5081) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.0001</text>
+  <text transform="translate(3025,-4573) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.00011</text>
+  <text transform="translate(3850,-3889) scale(0.8,1)" x="0" dy="0.7ex" font-size="450">.001</text>
+  <text transform="translate(4527,-3056) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.00101</text>
+  <text transform="translate(5031,-2105) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.0011</text>
+  <text transform="translate(5340,-1073) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.00111</text>
+  <text transform="translate(5445,-0) scale(0.8,1)" x="0" dy="0.7ex" font-size="500">.01</text>
+  <text transform="translate(5340,1073) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.01001</text>
+  <text transform="translate(5031,2105) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.0101</text>
+  <text transform="translate(4527,3056) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.01011</text>
+  <text transform="translate(3850,3889) scale(0.8,1)" x="0" dy="0.7ex" font-size="450">.011</text>
+  <text transform="translate(3025,4573) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.01101</text>
+  <text transform="translate(2084,5081) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.0111</text>
+  <text transform="translate(1062,5394) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.01111</text>
+  <text transform="translate(0,5500) scale(0.8,1)" x="0" dy="0.7ex" font-size="550">.1</text>
+  <text transform="translate(-1062,5394) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.10001</text>
+  <text transform="translate(-2084,5081) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.1001</text>
+  <text transform="translate(-3025,4573) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.10011</text>
+  <text transform="translate(-3850,3889) scale(0.8,1)" x="0" dy="0.7ex" font-size="450">.101</text>
+  <text transform="translate(-4527,3056) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.10101</text>
+  <text transform="translate(-5031,2105) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.1011</text>
+  <text transform="translate(-5340,1073) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.10111</text>
+  <text transform="translate(-5445,0) scale(0.8,1)" x="0" dy="0.7ex" font-size="500">.11</text>
+  <text transform="translate(-5340,-1073) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.11001</text>
+  <text transform="translate(-5031,-2105) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.1101</text>
+  <text transform="translate(-4527,-3056) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.11011</text>
+  <text transform="translate(-3850,-3889) scale(0.8,1)" x="0" dy="0.7ex" font-size="450">.111</text>
+  <text transform="translate(-3025,-4573) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.11101</text>
+  <text transform="translate(-2084,-5081) scale(0.8,1)" x="0" dy="0.7ex" font-size="400">.1111</text>
+  <text transform="translate(-1062,-5394) scale(0.8,1)" x="0" dy="0.7ex" font-size="350">.11111</text>
+  <g class="active">
+   <path d="M 0,-1000 A 1000,1000 0 0 1 1000,-0 L 1960,-0 A 1960,1960 0 0 0 0,-1960" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(1047,-1047) rotate(0)" x="0" dy="0.7ex" font-size="1000">W</text>
+   <title>W .001</title>
+  </g>
+  <g class="active">
+   <path d="M 0,-2000 A 2000,2000 0 0 1 765,-1848 L 1133,-2735 A 2960,2960 0 0 0 0,-2960" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(484,-2432) rotate(0)" x="0" dy="0.7ex" font-size="700">WW</text>
+   <title>WW .00001</title>
+  </g>
+  <g class="active">
+   <path d="M 0,-3000 A 3000,3000 0 0 1 294,-2986 L 388,-3941 A 3960,3960 0 0 0 0,-3960" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(171,-3476) rotate(-87)" x="0" dy="0.7ex" font-size="400">WWW</text>
+   <title>WWW .0000001</title>
+  </g>
+  <g class="active">
+   <path d="M 0,-4000 A 4000,4000 0 0 1 98,-3999 L 122,-4959 A 4960,4960 0 0 0 0,-4960" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(55,-4480) rotate(-89)" x="0" dy="0.7ex" font-size="200">WWWW</text>
+   <title>WWWW .000000001</title>
+  </g>
+  <g class="active">
+   <path d="M 98,-3999 A 4000,4000 0 0 1 294,-3989 L 365,-4947 A 4960,4960 0 0 0 122,-4959" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(220,-4475) rotate(-87)" x="0" dy="0.7ex" font-size="200">WWWI</text>
+   <title>WWWI .0000001</title>
+  </g>
+  <g class="active">
+   <path d="M 294,-3989 A 4000,4000 0 0 1 392,-3981 L 486,-4936 A 4960,4960 0 0 0 365,-4947" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(384,-4463) rotate(-85)" x="0" dy="0.7ex" font-size="200">WWWK</text>
+   <title>WWWK .000000111</title>
+  </g>
+  <g class="active">
+   <path d="M 294,-2986 A 3000,3000 0 0 1 871,-2871 L 1150,-3789 A 3960,3960 0 0 0 388,-3941" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(679,-3413) rotate(-79)" x="0" dy="0.7ex" font-size="400">WWI</text>
+   <title>WWI .00001</title>
+  </g>
+  <g class="active">
+   <path d="M 392,-3981 A 4000,4000 0 0 1 587,-3957 L 728,-4906 A 4960,4960 0 0 0 486,-4936" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(548,-4446) rotate(-83)" x="0" dy="0.7ex" font-size="200">WWIW</text>
+   <title>WWIW .00000101</title>
+  </g>
+  <g class="active">
+   <path d="M 587,-3957 A 4000,4000 0 0 1 972,-3880 L 1205,-4811 A 4960,4960 0 0 0 728,-4906" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(874,-4394) rotate(-79)" x="0" dy="0.7ex" font-size="200">WWII</text>
+   <title>WWII .00001</title>
+  </g>
+  <g class="active">
+   <path d="M 972,-3880 A 4000,4000 0 0 1 1161,-3828 L 1440,-4746 A 4960,4960 0 0 0 1205,-4811" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(1195,-4318) rotate(-75)" x="0" dy="0.7ex" font-size="200">WWIK</text>
+   <title>WWIK .00001011</title>
+  </g>
+  <g class="active">
+   <path d="M 871,-2871 A 3000,3000 0 0 1 1148,-2772 L 1515,-3659 A 3960,3960 0 0 0 1150,-3789" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(1172,-3277) rotate(-70)" x="0" dy="0.7ex" font-size="400">WWK</text>
+   <title>WWK .0000111</title>
+  </g>
+  <g class="active">
+   <path d="M 1161,-3828 A 4000,4000 0 0 1 1255,-3798 L 1556,-4710 A 4960,4960 0 0 0 1440,-4746" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(1353,-4271) rotate(-72)" x="0" dy="0.7ex" font-size="200">WWKW</text>
+   <title>WWKW .000011001</title>
+  </g>
+  <g class="active">
+   <path d="M 1255,-3798 A 4000,4000 0 0 1 1440,-3732 L 1785,-4628 A 4960,4960 0 0 0 1556,-4710" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(1509,-4218) rotate(-70)" x="0" dy="0.7ex" font-size="200">WWKI</text>
+   <title>WWKI .0000111</title>
+  </g>
+  <g class="active">
+   <path d="M 1440,-3732 A 4000,4000 0 0 1 1531,-3696 L 1898,-4582 A 4960,4960 0 0 0 1785,-4628" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(1664,-4160) rotate(-68)" x="0" dy="0.7ex" font-size="200">WWKK</text>
+   <title>WWKK .000011111</title>
+  </g>
+  <g class="active">
+   <path d="M 765,-1848 A 2000,2000 0 0 1 1848,-765 L 2735,-1133 A 2960,2960 0 0 0 1133,-2735" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(1754,-1754) rotate(0)" x="0" dy="0.7ex" font-size="700">WI</text>
+   <title>WI .001</title>
+  </g>
+  <g class="active">
+   <path d="M 1148,-2772 A 3000,3000 0 0 1 1667,-2494 L 2200,-3293 A 3960,3960 0 0 0 1515,-3659" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(1640,-3069) rotate(-62)" x="0" dy="0.7ex" font-size="400">WIW</text>
+   <title>WIW .000101</title>
+  </g>
+  <g class="active">
+   <path d="M 1531,-3696 A 4000,4000 0 0 1 1710,-3616 L 2121,-4484 A 4960,4960 0 0 0 1898,-4582" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(1815,-4096) rotate(-66)" x="0" dy="0.7ex" font-size="200">WIWW</text>
+   <title>WIWW .00010001</title>
+  </g>
+  <g class="active">
+   <path d="M 1710,-3616 A 4000,4000 0 0 1 2056,-3431 L 2550,-4254 A 4960,4960 0 0 0 2121,-4484" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(2112,-3951) rotate(-62)" x="0" dy="0.7ex" font-size="200">WIWI</text>
+   <title>WIWI .000101</title>
+  </g>
+  <g class="active">
+   <path d="M 2056,-3431 A 4000,4000 0 0 1 2222,-3326 L 2756,-4124 A 4960,4960 0 0 0 2550,-4254" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(2397,-3785) rotate(-58)" x="0" dy="0.7ex" font-size="200">WIWK</text>
+   <title>WIWK .00010111</title>
+  </g>
+  <g class="active">
+   <path d="M 1667,-2494 A 3000,3000 0 0 1 2494,-1667 L 3293,-2200 A 3960,3960 0 0 0 2200,-3293" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(2461,-2461) rotate(-45)" x="0" dy="0.7ex" font-size="400">WII</text>
+   <title>WII .001</title>
+  </g>
+  <g class="active">
+   <path d="M 2222,-3326 A 4000,4000 0 0 1 2538,-3092 L 3147,-3834 A 4960,4960 0 0 0 2756,-4124" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(2669,-3598) rotate(-53)" x="0" dy="0.7ex" font-size="200">WIIW</text>
+   <title>WIIW .0001101</title>
+  </g>
+  <g class="active">
+   <path d="M 2538,-3092 A 4000,4000 0 0 1 3092,-2538 L 3834,-3147 A 4960,4960 0 0 0 3147,-3834" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(3168,-3168) rotate(-45)" x="0" dy="0.7ex" font-size="200">WIII</text>
+   <title>WIII .001</title>
+  </g>
+  <g class="active">
+   <path d="M 3092,-2538 A 4000,4000 0 0 1 3326,-2222 L 4124,-2756 A 4960,4960 0 0 0 3834,-3147" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(3598,-2669) rotate(-37)" x="0" dy="0.7ex" font-size="200">WIIK</text>
+   <title>WIIK .0010011</title>
+  </g>
+  <g class="active">
+   <path d="M 2494,-1667 A 3000,3000 0 0 1 2772,-1148 L 3659,-1515 A 3960,3960 0 0 0 3293,-2200" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(3069,-1640) rotate(-28)" x="0" dy="0.7ex" font-size="400">WIK</text>
+   <title>WIK .001011</title>
+  </g>
+  <g class="active">
+   <path d="M 3326,-2222 A 4000,4000 0 0 1 3431,-2056 L 4254,-2550 A 4960,4960 0 0 0 4124,-2756" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(3785,-2397) rotate(-32)" x="0" dy="0.7ex" font-size="200">WIKW</text>
+   <title>WIKW .00101001</title>
+  </g>
+  <g class="active">
+   <path d="M 3431,-2056 A 4000,4000 0 0 1 3616,-1710 L 4484,-2121 A 4960,4960 0 0 0 4254,-2550" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(3951,-2112) rotate(-28)" x="0" dy="0.7ex" font-size="400" fill="#ff0000">WIKI</text>
+   <use xlink:href="#radius_1" transform="rotate(62) scale(1.03)" stroke-width="20" stroke="#ff0000"/>
+   <text transform="translate(4851,-2593)" x="0" dy="0.7ex" font-size="300" fill="#ff0000">.001011</text>
+   <title>WIKI .001011</title>
+  </g>
+  <g class="active">
+   <path d="M 3616,-1710 A 4000,4000 0 0 1 3696,-1531 L 4582,-1898 A 4960,4960 0 0 0 4484,-2121" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(4096,-1815) rotate(-24)" x="0" dy="0.7ex" font-size="200">WIKK</text>
+   <title>WIKK .00101111</title>
+  </g>
+  <g class="active">
+   <path d="M 1848,-765 A 2000,2000 0 0 1 2000,-0 L 2960,-0 A 2960,2960 0 0 0 2735,-1133" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(2432,-484) rotate(0)" x="0" dy="0.7ex" font-size="700">WK</text>
+   <title>WK .00111</title>
+  </g>
+  <g class="active">
+   <path d="M 2772,-1148 A 3000,3000 0 0 1 2871,-871 L 3789,-1150 A 3960,3960 0 0 0 3659,-1515" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(3277,-1172) rotate(-20)" x="0" dy="0.7ex" font-size="400">WKW</text>
+   <title>WKW .0011001</title>
+  </g>
+  <g class="active">
+   <path d="M 3696,-1531 A 4000,4000 0 0 1 3732,-1440 L 4628,-1785 A 4960,4960 0 0 0 4582,-1898" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(4160,-1664) rotate(-22)" x="0" dy="0.7ex" font-size="200">WKWW</text>
+   <title>WKWW .001100001</title>
+  </g>
+  <g class="active">
+   <path d="M 3732,-1440 A 4000,4000 0 0 1 3798,-1255 L 4710,-1556 A 4960,4960 0 0 0 4628,-1785" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(4218,-1509) rotate(-20)" x="0" dy="0.7ex" font-size="200">WKWI</text>
+   <title>WKWI .0011001</title>
+  </g>
+  <g class="active">
+   <path d="M 3798,-1255 A 4000,4000 0 0 1 3828,-1161 L 4746,-1440 A 4960,4960 0 0 0 4710,-1556" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(4271,-1353) rotate(-18)" x="0" dy="0.7ex" font-size="200">WKWK</text>
+   <title>WKWK .001100111</title>
+  </g>
+  <g class="active">
+   <path d="M 2871,-871 A 3000,3000 0 0 1 2986,-294 L 3941,-388 A 3960,3960 0 0 0 3789,-1150" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(3413,-679) rotate(-11)" x="0" dy="0.7ex" font-size="400">WKI</text>
+   <title>WKI .00111</title>
+  </g>
+  <g class="active">
+   <path d="M 3828,-1161 A 4000,4000 0 0 1 3880,-972 L 4811,-1205 A 4960,4960 0 0 0 4746,-1440" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(4318,-1195) rotate(-15)" x="0" dy="0.7ex" font-size="200">WKIW</text>
+   <title>WKIW .00110101</title>
+  </g>
+  <g class="active">
+   <path d="M 3880,-972 A 4000,4000 0 0 1 3957,-587 L 4906,-728 A 4960,4960 0 0 0 4811,-1205" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(4394,-874) rotate(-11)" x="0" dy="0.7ex" font-size="200">WKII</text>
+   <title>WKII .00111</title>
+  </g>
+  <g class="active">
+   <path d="M 3957,-587 A 4000,4000 0 0 1 3981,-392 L 4936,-486 A 4960,4960 0 0 0 4906,-728" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(4446,-548) rotate(-7)" x="0" dy="0.7ex" font-size="200">WKIK</text>
+   <title>WKIK .00111011</title>
+  </g>
+  <g class="active">
+   <path d="M 2986,-294 A 3000,3000 0 0 1 3000,-0 L 3960,-0 A 3960,3960 0 0 0 3941,-388" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(3476,-171) rotate(-3)" x="0" dy="0.7ex" font-size="400">WKK</text>
+   <title>WKK .0011111</title>
+  </g>
+  <g class="active">
+   <path d="M 3981,-392 A 4000,4000 0 0 1 3989,-294 L 4947,-365 A 4960,4960 0 0 0 4936,-486" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(4463,-384) rotate(-5)" x="0" dy="0.7ex" font-size="200">WKKW</text>
+   <title>WKKW .001111001</title>
+  </g>
+  <g class="active">
+   <path d="M 3989,-294 A 4000,4000 0 0 1 3999,-98 L 4959,-122 A 4960,4960 0 0 0 4947,-365" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(4475,-220) rotate(-3)" x="0" dy="0.7ex" font-size="200">WKKI</text>
+   <title>WKKI .0011111</title>
+  </g>
+  <g class="active">
+   <path d="M 3999,-98 A 4000,4000 0 0 1 4000,-0 L 4960,-0 A 4960,4960 0 0 0 4959,-122" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(4480,-55) rotate(-1)" x="0" dy="0.7ex" font-size="200">WKKK</text>
+   <title>WKKK .001111111</title>
+  </g>
+  <g class="active">
+   <path d="M 1000,-0 A 1000,1000 0 0 1 -1000,0 L -1960,0 A 1960,1960 0 0 0 1960,-0" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(0,1480) rotate(0)" x="0" dy="0.7ex" font-size="1000">I</text>
+   <title>I .1</title>
+  </g>
+  <g class="active">
+   <path d="M 2000,-0 A 2000,2000 0 0 1 1414,1414 L 2093,2093 A 2960,2960 0 0 0 2960,-0" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(2291,949) rotate(0)" x="0" dy="0.7ex" font-size="700">IW</text>
+   <title>IW .0101</title>
+  </g>
+  <g class="active">
+   <path d="M 3000,-0 A 3000,3000 0 0 1 2942,585 L 3884,773 A 3960,3960 0 0 0 3960,-0" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(3463,341) rotate(6)" x="0" dy="0.7ex" font-size="400">IWW</text>
+   <title>IWW .010001</title>
+  </g>
+  <g class="active">
+   <path d="M 4000,-0 A 4000,4000 0 0 1 3995,196 L 4954,243 A 4960,4960 0 0 0 4960,-0" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(4479,110) rotate(1)" x="0" dy="0.7ex" font-size="200">IWWW</text>
+   <title>IWWW .01000001</title>
+  </g>
+  <g class="active">
+   <path d="M 3995,196 A 4000,4000 0 0 1 3957,587 L 4906,728 A 4960,4960 0 0 0 4954,243" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(4458,439) rotate(6)" x="0" dy="0.7ex" font-size="200">IWWI</text>
+   <title>IWWI .010001</title>
+  </g>
+  <g class="active">
+   <path d="M 3957,587 A 4000,4000 0 0 1 3923,780 L 4865,968 A 4960,4960 0 0 0 4906,728" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(4414,766) rotate(10)" x="0" dy="0.7ex" font-size="200">IWWK</text>
+   <title>IWWK .01000111</title>
+  </g>
+  <g class="active">
+   <path d="M 2942,585 A 3000,3000 0 0 1 2494,1667 L 3293,2200 A 3960,3960 0 0 0 3884,773" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(3215,1332) rotate(22)" x="0" dy="0.7ex" font-size="400">IWI</text>
+   <title>IWI .0101</title>
+  </g>
+  <g class="active">
+   <path d="M 3923,780 A 4000,4000 0 0 1 3828,1161 L 4746,1440 A 4960,4960 0 0 0 4865,968" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(4346,1089) rotate(14)" x="0" dy="0.7ex" font-size="200">IWIW</text>
+   <title>IWIW .0100101</title>
+  </g>
+  <g class="active">
+   <path d="M 3828,1161 A 4000,4000 0 0 1 3528,1886 L 4374,2338 A 4960,4960 0 0 0 4746,1440" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(4139,1714) rotate(22)" x="0" dy="0.7ex" font-size="200">IWII</text>
+   <title>IWII .0101</title>
+  </g>
+  <g class="active">
+   <path d="M 3528,1886 A 4000,4000 0 0 1 3326,2222 L 4124,2756 A 4960,4960 0 0 0 4374,2338" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(3843,2303) rotate(31)" x="0" dy="0.7ex" font-size="200">IWIK</text>
+   <title>IWIK .0101011</title>
+  </g>
+  <g class="active">
+   <path d="M 2494,1667 A 3000,3000 0 0 1 2121,2121 L 2800,2800 A 3960,3960 0 0 0 3293,2200" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(2690,2208) rotate(39)" x="0" dy="0.7ex" font-size="400">IWK</text>
+   <title>IWK .010111</title>
+  </g>
+  <g class="active">
+   <path d="M 3326,2222 A 4000,4000 0 0 1 3213,2383 L 3984,2955 A 4960,4960 0 0 0 4124,2756" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(3663,2580) rotate(35)" x="0" dy="0.7ex" font-size="200">IWKW</text>
+   <title>IWKW .01011001</title>
+  </g>
+  <g class="active">
+   <path d="M 3213,2383 A 4000,4000 0 0 1 2964,2686 L 3675,3331 A 4960,4960 0 0 0 3984,2955" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(3463,2842) rotate(39)" x="0" dy="0.7ex" font-size="200">IWKI</text>
+   <title>IWKI .010111</title>
+  </g>
+  <g class="active">
+   <path d="M 2964,2686 A 4000,4000 0 0 1 2828,2828 L 3507,3507 A 4960,4960 0 0 0 3675,3331" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(3245,3089) rotate(44)" x="0" dy="0.7ex" font-size="200">IWKK</text>
+   <title>IWKK .01011111</title>
+  </g>
+  <g class="active">
+   <path d="M 1414,1414 A 2000,2000 0 0 1 -1414,1414 L -2093,2093 A 2960,2960 0 0 0 2093,2093" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(0,2480) rotate(0)" x="0" dy="0.7ex" font-size="700">II</text>
+   <title>II .1</title>
+  </g>
+  <g class="active">
+   <path d="M 2121,2121 A 3000,3000 0 0 1 1148,2772 L 1515,3659 A 3960,3960 0 0 0 2800,2800" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(1933,2894) rotate(56)" x="0" dy="0.7ex" font-size="400">IIW</text>
+   <title>IIW .01101</title>
+  </g>
+  <g class="active">
+   <path d="M 2828,2828 A 4000,4000 0 0 1 2538,3092 L 3147,3834 A 4960,4960 0 0 0 3507,3507" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(3009,3319) rotate(48)" x="0" dy="0.7ex" font-size="200">IIWW</text>
+   <title>IIWW .0110001</title>
+  </g>
+  <g class="active">
+   <path d="M 2538,3092 A 4000,4000 0 0 1 1886,3528 L 2338,4374 A 4960,4960 0 0 0 3147,3834" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(2489,3725) rotate(56)" x="0" dy="0.7ex" font-size="200">IIWI</text>
+   <title>IIWI .01101</title>
+  </g>
+  <g class="active">
+   <path d="M 1886,3528 A 4000,4000 0 0 1 1531,3696 L 1898,4582 A 4960,4960 0 0 0 2338,4374" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(1915,4050) rotate(65)" x="0" dy="0.7ex" font-size="200">IIWK</text>
+   <title>IIWK .0110111</title>
+  </g>
+  <g class="active">
+   <path d="M 1148,2772 A 3000,3000 0 0 1 -1148,2772 L -1515,3659 A 3960,3960 0 0 0 1515,3659" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(0,3480) rotate(0)" x="0" dy="0.7ex" font-size="400">III</text>
+   <title>III .1</title>
+  </g>
+  <g class="active">
+   <path d="M 1531,3696 A 4000,4000 0 0 1 780,3923 L 968,4865 A 4960,4960 0 0 0 1898,4582" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(1300,4287) rotate(73)" x="0" dy="0.7ex" font-size="200">IIIW</text>
+   <title>IIIW .011101</title>
+  </g>
+  <g class="active">
+   <path d="M 780,3923 A 4000,4000 0 0 1 -780,3923 L -968,4865 A 4960,4960 0 0 0 968,4865" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(0,4480) rotate(0)" x="0" dy="0.7ex" font-size="200">IIII</text>
+   <title>IIII .1</title>
+  </g>
+  <g class="active">
+   <path d="M -780,3923 A 4000,4000 0 0 1 -1531,3696 L -1898,4582 A 4960,4960 0 0 0 -968,4865" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-1300,4287) rotate(287)" x="0" dy="0.7ex" font-size="200">IIIK</text>
+   <title>IIIK .100011</title>
+  </g>
+  <g class="active">
+   <path d="M -1148,2772 A 3000,3000 0 0 1 -2121,2121 L -2800,2800 A 3960,3960 0 0 0 -1515,3659" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-1933,2894) rotate(304)" x="0" dy="0.7ex" font-size="400">IIK</text>
+   <title>IIK .10011</title>
+  </g>
+  <g class="active">
+   <path d="M -1531,3696 A 4000,4000 0 0 1 -1886,3528 L -2338,4374 A 4960,4960 0 0 0 -1898,4582" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-1915,4050) rotate(295)" x="0" dy="0.7ex" font-size="200">IIKW</text>
+   <title>IIKW .1001001</title>
+  </g>
+  <g class="active">
+   <path d="M -1886,3528 A 4000,4000 0 0 1 -2538,3092 L -3147,3834 A 4960,4960 0 0 0 -2338,4374" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-2489,3725) rotate(304)" x="0" dy="0.7ex" font-size="200">IIKI</text>
+   <title>IIKI .10011</title>
+  </g>
+  <g class="active">
+   <path d="M -2538,3092 A 4000,4000 0 0 1 -2828,2828 L -3507,3507 A 4960,4960 0 0 0 -3147,3834" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-3009,3319) rotate(312)" x="0" dy="0.7ex" font-size="200">IIKK</text>
+   <title>IIKK .1001111</title>
+  </g>
+  <g class="active">
+   <path d="M -1414,1414 A 2000,2000 0 0 1 -2000,0 L -2960,0 A 2960,2960 0 0 0 -2093,2093" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-2291,949) rotate(0)" x="0" dy="0.7ex" font-size="700">IK</text>
+   <title>IK .1011</title>
+  </g>
+  <g class="active">
+   <path d="M -2121,2121 A 3000,3000 0 0 1 -2494,1667 L -3293,2200 A 3960,3960 0 0 0 -2800,2800" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-2690,2208) rotate(321)" x="0" dy="0.7ex" font-size="400">IKW</text>
+   <title>IKW .101001</title>
+  </g>
+  <g class="active">
+   <path d="M -2828,2828 A 4000,4000 0 0 1 -2964,2686 L -3675,3331 A 4960,4960 0 0 0 -3507,3507" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-3245,3089) rotate(316)" x="0" dy="0.7ex" font-size="200">IKWW</text>
+   <title>IKWW .10100001</title>
+  </g>
+  <g class="active">
+   <path d="M -2964,2686 A 4000,4000 0 0 1 -3213,2383 L -3984,2955 A 4960,4960 0 0 0 -3675,3331" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-3463,2842) rotate(321)" x="0" dy="0.7ex" font-size="200">IKWI</text>
+   <title>IKWI .101001</title>
+  </g>
+  <g class="active">
+   <path d="M -3213,2383 A 4000,4000 0 0 1 -3326,2222 L -4124,2756 A 4960,4960 0 0 0 -3984,2955" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-3663,2580) rotate(325)" x="0" dy="0.7ex" font-size="200">IKWK</text>
+   <title>IKWK .10100111</title>
+  </g>
+  <g class="active">
+   <path d="M -2494,1667 A 3000,3000 0 0 1 -2942,585 L -3884,773 A 3960,3960 0 0 0 -3293,2200" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-3215,1332) rotate(338)" x="0" dy="0.7ex" font-size="400">IKI</text>
+   <title>IKI .1011</title>
+  </g>
+  <g class="active">
+   <path d="M -3326,2222 A 4000,4000 0 0 1 -3528,1886 L -4374,2338 A 4960,4960 0 0 0 -4124,2756" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-3843,2303) rotate(329)" x="0" dy="0.7ex" font-size="200">IKIW</text>
+   <title>IKIW .1010101</title>
+  </g>
+  <g class="active">
+   <path d="M -3528,1886 A 4000,4000 0 0 1 -3828,1161 L -4746,1440 A 4960,4960 0 0 0 -4374,2338" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-4139,1714) rotate(338)" x="0" dy="0.7ex" font-size="200">IKII</text>
+   <title>IKII .1011</title>
+  </g>
+  <g class="active">
+   <path d="M -3828,1161 A 4000,4000 0 0 1 -3923,780 L -4865,968 A 4960,4960 0 0 0 -4746,1440" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-4346,1089) rotate(346)" x="0" dy="0.7ex" font-size="200">IKIK</text>
+   <title>IKIK .1011011</title>
+  </g>
+  <g class="active">
+   <path d="M -2942,585 A 3000,3000 0 0 1 -3000,0 L -3960,0 A 3960,3960 0 0 0 -3884,773" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-3463,341) rotate(354)" x="0" dy="0.7ex" font-size="400">IKK</text>
+   <title>IKK .101111</title>
+  </g>
+  <g class="active">
+   <path d="M -3923,780 A 4000,4000 0 0 1 -3957,587 L -4906,728 A 4960,4960 0 0 0 -4865,968" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-4414,766) rotate(350)" x="0" dy="0.7ex" font-size="200">IKKW</text>
+   <title>IKKW .10111001</title>
+  </g>
+  <g class="active">
+   <path d="M -3957,587 A 4000,4000 0 0 1 -3995,196 L -4954,243 A 4960,4960 0 0 0 -4906,728" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-4458,439) rotate(354)" x="0" dy="0.7ex" font-size="200">IKKI</text>
+   <title>IKKI .101111</title>
+  </g>
+  <g class="active">
+   <path d="M -3995,196 A 4000,4000 0 0 1 -4000,0 L -4960,0 A 4960,4960 0 0 0 -4954,243" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-4479,110) rotate(359)" x="0" dy="0.7ex" font-size="200">IKKK</text>
+   <title>IKKK .10111111</title>
+  </g>
+  <g class="active">
+   <path d="M -1000,0 A 1000,1000 0 0 1 -0,-1000 L -0,-1960 A 1960,1960 0 0 0 -1960,0" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-1047,-1047) rotate(0)" x="0" dy="0.7ex" font-size="1000">K</text>
+   <title>K .111</title>
+  </g>
+  <g class="active">
+   <path d="M -2000,0 A 2000,2000 0 0 1 -1848,-765 L -2735,-1133 A 2960,2960 0 0 0 -2960,0" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-2432,-484) rotate(0)" x="0" dy="0.7ex" font-size="700">KW</text>
+   <title>KW .11001</title>
+  </g>
+  <g class="active">
+   <path d="M -3000,0 A 3000,3000 0 0 1 -2986,-294 L -3941,-388 A 3960,3960 0 0 0 -3960,0" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-3476,-171) rotate(363)" x="0" dy="0.7ex" font-size="400">KWW</text>
+   <title>KWW .1100001</title>
+  </g>
+  <g class="active">
+   <path d="M -4000,0 A 4000,4000 0 0 1 -3999,-98 L -4959,-122 A 4960,4960 0 0 0 -4960,0" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-4480,-55) rotate(361)" x="0" dy="0.7ex" font-size="200">KWWW</text>
+   <title>KWWW .110000001</title>
+  </g>
+  <g class="active">
+   <path d="M -3999,-98 A 4000,4000 0 0 1 -3989,-294 L -4947,-365 A 4960,4960 0 0 0 -4959,-122" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-4475,-220) rotate(363)" x="0" dy="0.7ex" font-size="200">KWWI</text>
+   <title>KWWI .1100001</title>
+  </g>
+  <g class="active">
+   <path d="M -3989,-294 A 4000,4000 0 0 1 -3981,-392 L -4936,-486 A 4960,4960 0 0 0 -4947,-365" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-4463,-384) rotate(365)" x="0" dy="0.7ex" font-size="200">KWWK</text>
+   <title>KWWK .110000111</title>
+  </g>
+  <g class="active">
+   <path d="M -2986,-294 A 3000,3000 0 0 1 -2871,-871 L -3789,-1150 A 3960,3960 0 0 0 -3941,-388" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-3413,-679) rotate(371)" x="0" dy="0.7ex" font-size="400">KWI</text>
+   <title>KWI .11001</title>
+  </g>
+  <g class="active">
+   <path d="M -3981,-392 A 4000,4000 0 0 1 -3957,-587 L -4906,-728 A 4960,4960 0 0 0 -4936,-486" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-4446,-548) rotate(367)" x="0" dy="0.7ex" font-size="200">KWIW</text>
+   <title>KWIW .11000101</title>
+  </g>
+  <g class="active">
+   <path d="M -3957,-587 A 4000,4000 0 0 1 -3880,-972 L -4811,-1205 A 4960,4960 0 0 0 -4906,-728" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-4394,-874) rotate(371)" x="0" dy="0.7ex" font-size="200">KWII</text>
+   <title>KWII .11001</title>
+  </g>
+  <g class="active">
+   <path d="M -3880,-972 A 4000,4000 0 0 1 -3828,-1161 L -4746,-1440 A 4960,4960 0 0 0 -4811,-1205" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-4318,-1195) rotate(375)" x="0" dy="0.7ex" font-size="200">KWIK</text>
+   <title>KWIK .11001011</title>
+  </g>
+  <g class="active">
+   <path d="M -2871,-871 A 3000,3000 0 0 1 -2772,-1148 L -3659,-1515 A 3960,3960 0 0 0 -3789,-1150" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-3277,-1172) rotate(380)" x="0" dy="0.7ex" font-size="400">KWK</text>
+   <title>KWK .1100111</title>
+  </g>
+  <g class="active">
+   <path d="M -3828,-1161 A 4000,4000 0 0 1 -3798,-1255 L -4710,-1556 A 4960,4960 0 0 0 -4746,-1440" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-4271,-1353) rotate(378)" x="0" dy="0.7ex" font-size="200">KWKW</text>
+   <title>KWKW .110011001</title>
+  </g>
+  <g class="active">
+   <path d="M -3798,-1255 A 4000,4000 0 0 1 -3732,-1440 L -4628,-1785 A 4960,4960 0 0 0 -4710,-1556" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-4218,-1509) rotate(380)" x="0" dy="0.7ex" font-size="200">KWKI</text>
+   <title>KWKI .1100111</title>
+  </g>
+  <g class="active">
+   <path d="M -3732,-1440 A 4000,4000 0 0 1 -3696,-1531 L -4582,-1898 A 4960,4960 0 0 0 -4628,-1785" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-4160,-1664) rotate(382)" x="0" dy="0.7ex" font-size="200">KWKK</text>
+   <title>KWKK .110011111</title>
+  </g>
+  <g class="active">
+   <path d="M -1848,-765 A 2000,2000 0 0 1 -765,-1848 L -1133,-2735 A 2960,2960 0 0 0 -2735,-1133" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-1754,-1754) rotate(0)" x="0" dy="0.7ex" font-size="700">KI</text>
+   <title>KI .111</title>
+  </g>
+  <g class="active">
+   <path d="M -2772,-1148 A 3000,3000 0 0 1 -2494,-1667 L -3293,-2200 A 3960,3960 0 0 0 -3659,-1515" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-3069,-1640) rotate(388)" x="0" dy="0.7ex" font-size="400">KIW</text>
+   <title>KIW .110101</title>
+  </g>
+  <g class="active">
+   <path d="M -3696,-1531 A 4000,4000 0 0 1 -3616,-1710 L -4484,-2121 A 4960,4960 0 0 0 -4582,-1898" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-4096,-1815) rotate(384)" x="0" dy="0.7ex" font-size="200">KIWW</text>
+   <title>KIWW .11010001</title>
+  </g>
+  <g class="active">
+   <path d="M -3616,-1710 A 4000,4000 0 0 1 -3431,-2056 L -4254,-2550 A 4960,4960 0 0 0 -4484,-2121" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-3951,-2112) rotate(388)" x="0" dy="0.7ex" font-size="400" fill="#ff0000">KIWI</text>
+   <use xlink:href="#radius_1" transform="rotate(298) scale(1.03)" stroke-width="20" stroke="#ff0000"/>
+   <text transform="translate(-4851,-2593)" x="0" dy="0.7ex" font-size="300" fill="#ff0000">.110101</text>
+   <title>KIWI .110101</title>
+  </g>
+  <g class="active">
+   <path d="M -3431,-2056 A 4000,4000 0 0 1 -3326,-2222 L -4124,-2756 A 4960,4960 0 0 0 -4254,-2550" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-3785,-2397) rotate(392)" x="0" dy="0.7ex" font-size="200">KIWK</text>
+   <title>KIWK .11010111</title>
+  </g>
+  <g class="active">
+   <path d="M -2494,-1667 A 3000,3000 0 0 1 -1667,-2494 L -2200,-3293 A 3960,3960 0 0 0 -3293,-2200" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-2461,-2461) rotate(405)" x="0" dy="0.7ex" font-size="400">KII</text>
+   <title>KII .111</title>
+  </g>
+  <g class="active">
+   <path d="M -3326,-2222 A 4000,4000 0 0 1 -3092,-2538 L -3834,-3147 A 4960,4960 0 0 0 -4124,-2756" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-3598,-2669) rotate(397)" x="0" dy="0.7ex" font-size="200">KIIW</text>
+   <title>KIIW .1101101</title>
+  </g>
+  <g class="active">
+   <path d="M -3092,-2538 A 4000,4000 0 0 1 -2538,-3092 L -3147,-3834 A 4960,4960 0 0 0 -3834,-3147" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-3168,-3168) rotate(405)" x="0" dy="0.7ex" font-size="200">KIII</text>
+   <title>KIII .111</title>
+  </g>
+  <g class="active">
+   <path d="M -2538,-3092 A 4000,4000 0 0 1 -2222,-3326 L -2756,-4124 A 4960,4960 0 0 0 -3147,-3834" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-2669,-3598) rotate(413)" x="0" dy="0.7ex" font-size="200">KIIK</text>
+   <title>KIIK .1110011</title>
+  </g>
+  <g class="active">
+   <path d="M -1667,-2494 A 3000,3000 0 0 1 -1148,-2772 L -1515,-3659 A 3960,3960 0 0 0 -2200,-3293" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-1640,-3069) rotate(422)" x="0" dy="0.7ex" font-size="400">KIK</text>
+   <title>KIK .111011</title>
+  </g>
+  <g class="active">
+   <path d="M -2222,-3326 A 4000,4000 0 0 1 -2056,-3431 L -2550,-4254 A 4960,4960 0 0 0 -2756,-4124" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-2397,-3785) rotate(418)" x="0" dy="0.7ex" font-size="200">KIKW</text>
+   <title>KIKW .11101001</title>
+  </g>
+  <g class="active">
+   <path d="M -2056,-3431 A 4000,4000 0 0 1 -1710,-3616 L -2121,-4484 A 4960,4960 0 0 0 -2550,-4254" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-2112,-3951) rotate(422)" x="0" dy="0.7ex" font-size="200">KIKI</text>
+   <title>KIKI .111011</title>
+  </g>
+  <g class="active">
+   <path d="M -1710,-3616 A 4000,4000 0 0 1 -1531,-3696 L -1898,-4582 A 4960,4960 0 0 0 -2121,-4484" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-1815,-4096) rotate(426)" x="0" dy="0.7ex" font-size="200">KIKK</text>
+   <title>KIKK .11101111</title>
+  </g>
+  <g class="active">
+   <path d="M -765,-1848 A 2000,2000 0 0 1 -0,-2000 L -0,-2960 A 2960,2960 0 0 0 -1133,-2735" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-484,-2432) rotate(0)" x="0" dy="0.7ex" font-size="700">KK</text>
+   <title>KK .11111</title>
+  </g>
+  <g class="active">
+   <path d="M -1148,-2772 A 3000,3000 0 0 1 -871,-2871 L -1150,-3789 A 3960,3960 0 0 0 -1515,-3659" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-1172,-3277) rotate(430)" x="0" dy="0.7ex" font-size="400">KKW</text>
+   <title>KKW .1111001</title>
+  </g>
+  <g class="active">
+   <path d="M -1531,-3696 A 4000,4000 0 0 1 -1440,-3732 L -1785,-4628 A 4960,4960 0 0 0 -1898,-4582" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-1664,-4160) rotate(428)" x="0" dy="0.7ex" font-size="200">KKWW</text>
+   <title>KKWW .111100001</title>
+  </g>
+  <g class="active">
+   <path d="M -1440,-3732 A 4000,4000 0 0 1 -1255,-3798 L -1556,-4710 A 4960,4960 0 0 0 -1785,-4628" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-1509,-4218) rotate(430)" x="0" dy="0.7ex" font-size="200">KKWI</text>
+   <title>KKWI .1111001</title>
+  </g>
+  <g class="active">
+   <path d="M -1255,-3798 A 4000,4000 0 0 1 -1161,-3828 L -1440,-4746 A 4960,4960 0 0 0 -1556,-4710" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-1353,-4271) rotate(432)" x="0" dy="0.7ex" font-size="200">KKWK</text>
+   <title>KKWK .111100111</title>
+  </g>
+  <g class="active">
+   <path d="M -871,-2871 A 3000,3000 0 0 1 -294,-2986 L -388,-3941 A 3960,3960 0 0 0 -1150,-3789" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-679,-3413) rotate(439)" x="0" dy="0.7ex" font-size="400">KKI</text>
+   <title>KKI .11111</title>
+  </g>
+  <g class="active">
+   <path d="M -1161,-3828 A 4000,4000 0 0 1 -972,-3880 L -1205,-4811 A 4960,4960 0 0 0 -1440,-4746" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-1195,-4318) rotate(435)" x="0" dy="0.7ex" font-size="200">KKIW</text>
+   <title>KKIW .11110101</title>
+  </g>
+  <g class="active">
+   <path d="M -972,-3880 A 4000,4000 0 0 1 -587,-3957 L -728,-4906 A 4960,4960 0 0 0 -1205,-4811" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-874,-4394) rotate(439)" x="0" dy="0.7ex" font-size="200">KKII</text>
+   <title>KKII .11111</title>
+  </g>
+  <g class="active">
+   <path d="M -587,-3957 A 4000,4000 0 0 1 -392,-3981 L -486,-4936 A 4960,4960 0 0 0 -728,-4906" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-548,-4446) rotate(443)" x="0" dy="0.7ex" font-size="200">KKIK</text>
+   <title>KKIK .11111011</title>
+  </g>
+  <g class="active">
+   <path d="M -294,-2986 A 3000,3000 0 0 1 -0,-3000 L -0,-3960 A 3960,3960 0 0 0 -388,-3941" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-171,-3476) rotate(447)" x="0" dy="0.7ex" font-size="400">KKK</text>
+   <title>KKK .1111111</title>
+  </g>
+  <g class="active">
+   <path d="M -392,-3981 A 4000,4000 0 0 1 -294,-3989 L -365,-4947 A 4960,4960 0 0 0 -486,-4936" fill="#9999ff"/>
+   <text class="interval_label" transform="translate(-384,-4463) rotate(445)" x="0" dy="0.7ex" font-size="200">KKKW</text>
+   <title>KKKW .111111001</title>
+  </g>
+  <g class="active">
+   <path d="M -294,-3989 A 4000,4000 0 0 1 -98,-3999 L -122,-4959 A 4960,4960 0 0 0 -365,-4947" fill="#66ff66"/>
+   <text class="interval_label" transform="translate(-220,-4475) rotate(447)" x="0" dy="0.7ex" font-size="200">KKKI</text>
+   <title>KKKI .1111111</title>
+  </g>
+  <g class="active">
+   <path d="M -98,-3999 A 4000,4000 0 0 1 -0,-4000 L -0,-4960 A 4960,4960 0 0 0 -122,-4959" fill="#ffcc00"/>
+   <text class="interval_label" transform="translate(-55,-4480) rotate(449)" x="0" dy="0.7ex" font-size="200">KKKK</text>
+   <title>KKKK .111111111</title>
+  </g>
+<!-- } END_DYNAMIC_SVG -->
+ </g>
+</svg>
+<!-- Please retain this and other comments, which contain Python code to generate this SVG. """
+import sys, re, math
+def fmt(string): ## string.format(**vars()) using tags {expression!format} by CMG Lee
+ def f(tag): i_sep = tag.rfind('!'); return (re.sub('\.0+$', '', str(eval(tag[1:-1])))
+  if (i_sep < 0) else ('{:%s}' % tag[i_sep + 1:-1]).format(eval(tag[1:i_sep])))
+ return (re.sub(r'(?<!{){[^{}]+}', lambda m:f(m.group()), string)
+         .replace('{{', '{').replace('}}', '}'))
+def append(obj, string): return obj.append(fmt(string))
+def format_tab(*arg): return '\t'.join([str(el) for el in (arg if len(arg) > 1 else arg[0])])
+def hex_rgb(colour): ## convert [#]RGB to #RRGGBB and [#]RRGGBB to #RRGGBB
+ return '#%s' % (colour if len(colour) > 4 else ''.join([c * 2 for c in colour])).lstrip('#')
+
+n_level           = 4
+n_axis_label      = 32
+radius_inc        = 1000
+radius_axis_label = n_level * radius_inc + 1500
+symbols           = [
+ {'label':'W' ,'colour':'99f','fraction':0.25 },
+ {'label':'I' ,'colour':'6f6','fraction':0.5  },
+ {'label':'K' ,'colour':'fc0','fraction':0.25 },
+]
+font_sizes = [0, 1000, 700, 400, 200]
+outs = []
+tau  = 2 * math.pi
+
+## Create axis
+def make_axis_label(fraction):
+ if (fraction == 0.0): return '0'
+ fraction_left = fraction
+ binarys       = ['.']
+ while (True):
+  fraction_left *= 2.0
+  if   (fraction_left < 1.0): binarys.append('0')
+  elif (fraction_left > 1.0): binarys.append('1'); fraction_left -= 1.0
+  else:                       binarys.append('1'); break
+ return ''.join(binarys)
+ # n_bit_n_axis_label = (n_axis_label - 1).bit_length()
+ # return ('1,0' if (i == 0) else
+         # '.%s' % (bin(i).replace('0b', '0' * n_bit_n_axis_label)[-n_bit_n_axis_label:].rstrip('0')))
+
+for i in range(n_axis_label):
+ fraction          = float(i) / n_axis_label
+ radian_axis_label = fraction * tau
+ axis_label = make_axis_label(fraction)
+ font_size  = (6 - len(axis_label) + 1) * 50 + 300
+ print(format_tab(i, fraction, axis_label, font_size))
+ outs.append('''\
+  <text transform="translate(%.0f,%.0f) scale(0.8,1)" x="0" dy="0.7ex" font-size="%d">%s</text>''' %
+  (radius_axis_label *  math.sin(radian_axis_label) * 0.99,
+   radius_axis_label * -math.cos(radian_axis_label), font_size, axis_label if (i > 0) else '1, 0'))
+
+## Create letter bins
+cumulative_fractions = []
+cumulative_fraction  = 0.0
+for (i_symbol, symbol) in enumerate(symbols):
+ cumulative_fractions.append(cumulative_fraction)
+ cumulative_fraction += symbol['fraction']
+print(cumulative_fractions)
+
+## Create intervals
+def process(sequences):
+ len_sequence = len(sequences)
+ if (len_sequence > 0):
+  cumulative_fraction = 0.0
+  fraction_last       = 1.0
+  for i_sequence in sequences:
+   symbol               = symbols[i_sequence]
+   cumulative_fraction += cumulative_fractions[i_sequence] * fraction_last
+   fraction_last       *= symbol['fraction']
+  fraction_label = cumulative_fraction + fraction_last / 2
+  radian_label = tau *  fraction_label
+  radian_begin = tau *  cumulative_fraction
+  radian_end   = tau * (cumulative_fraction + fraction_last)
+  (sin_begin, sin_end, sin_label) = ( math.sin(radian_begin),  math.sin(radian_end),  math.sin(radian_label))
+  (cos_begin, cos_end, cos_label) = (-math.cos(radian_begin), -math.cos(radian_end), -math.cos(radian_label))
+  radius_begin = len_sequence * radius_inc
+  radius_end   = radius_begin + radius_inc * 0.96
+  radius_label = radius_begin + radius_inc * 0.48
+  degree_label = 0 if (len_sequence < 3 or fraction_label == 0.5) else (
+                 radian_label * 360 / tau + (90 if (fraction_label > 0.5) else -90))
+  label        = ''.join([symbols[i_sequence]['label'] for i_sequence in sequences])
+  axis_label   = make_axis_label(fraction_label)
+  colour       = hex_rgb(symbol['colour'])
+  font_size    = font_sizes[len_sequence]
+  suffix       = ''
+  out_radius   = ''
+  if (label == 'WIKI' or label == 'KIWI'):
+   font_size  = font_sizes[len_sequence - 1]
+   suffix     = ''' fill="#ff0000"'''
+   out_radius = '''
+   <use xlink:href="#radius_1" transform="rotate(%.0f) scale(1.03)" stroke-width="20" stroke="#ff0000"/>
+   <text transform="translate(%.0f,%.0f)" x="0" dy="0.7ex" font-size="300" fill="#ff0000">%s</text>''' % (
+    radian_label * 360 / tau, radius_axis_label * sin_label, radius_axis_label * cos_label, axis_label)
+  print(format_tab(sequences, cumulative_fraction, radius_begin, radius_end))
+  outs.append('''\
+  <g class="active">
+   <path d="M %.0f,%.0f A %.0f,%.0f 0 0 1 %.0f,%.0f L %.0f,%.0f A %.0f,%.0f 0 0 0 %.0f,%.0f" fill="%s"/>
+   <text class="interval_label" transform="translate(%.0f,%.0f) rotate(%.0f)" x="0" dy="0.7ex" font-size="%d"%s>%s</text>%s
+   <title>%s %s</title>
+  </g>''' % (radius_begin * sin_begin, radius_begin * cos_begin, radius_begin, radius_begin,
+             radius_begin * sin_end  , radius_begin * cos_end  ,
+             radius_end   * sin_end  , radius_end   * cos_end  , radius_end  , radius_end  ,
+             radius_end   * sin_begin, radius_end   * cos_begin, colour,
+             radius_label * sin_label, radius_label * cos_label, degree_label, font_size, suffix, label,
+             out_radius, label, axis_label)) ## cannot use append(outs, ...) as in a function
+ if (len(sequences) < n_level):
+  for i_symbol in range(len(symbols)):
+   process(sequences + [i_symbol])
+
+process([])
+
+out_p = 'width="100%" height="100%" viewBox="-5800 -5800 11600 11600"'
+
+## Compile everything into an .svg file
+myself   = open(__file__, 'r').read() ## the contents of this very file
+file_out = open(__file__[:__file__.rfind('.')] + '.svg', 'w') ## *.* -> *.svg
+try: ## use try/finally so that file is closed even if write fails
+ file_out.write('''<?xml version="1.0" encoding="utf-8"?><!%s
+%s%s%s\n%s%s''' % ('-' + '-', ## because SVG comments cannot have 2 consecutive '-'s
+  myself[ : myself.find('width',myself.find('<svg'))], ## assume width specified before height/viewBox
+  out_p, ## replace SVG width/height/viewBox with {out_p} & dynamic SVG block with {outs} contents
+  myself[myself.find('>',myself.find('<svg')) : myself.find('\n',myself.find('BEGIN_'+'DYNAMIC_SVG'))],
+  '\n'.join(outs), myself[myself.rfind('\n',0,myself.find('END_'+'DYNAMIC_SVG')) : ]))
+finally:
+ file_out.close()
+
+## SVG-Python near-polyglot framework version 2 by CMG Lee (Feb 2016) -->
