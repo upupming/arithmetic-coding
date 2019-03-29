@@ -1,8 +1,7 @@
 # .travis.yml
 language: node_js
 node_js:
-- 'stable'
-dist: trusty
+- 'v10.14.2'
 
 cache:
   directories:
@@ -12,7 +11,7 @@ install:
   - npm install
 
 script:
-  npm test
+  - npm test
 
 after_success:
   npm run coveralls

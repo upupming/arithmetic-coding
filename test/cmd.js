@@ -1,9 +1,15 @@
+require('should');
 // https://medium.com/@zorrodg/integration-tests-on-node-js-cli-part-1-why-and-how-fa5b1ba552fe
 const spawn = require('child_process').spawn;
 function createProcess(processPath, args = [], env = null) {
   args = [processPath].concat(args);
 
-  return spawn('node', args, {
+  // Require which and child_process
+  const which = require('which');
+  // Find node in PATH
+  const node = which.sync('node');
+
+  return spawn(node, args, {
     env: Object.assign(
       {
         NODE_ENV: 'test'
