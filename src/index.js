@@ -1,6 +1,8 @@
-let encode = require('./encode').encode;
-let decode = require('./decode').decode;
+let encode = require('./encode');
+let decode = require('./decode');
 module.exports = {
-  encode,
-  decode
+  encode: encode.encode,
+  encodeFromBuffer: encode.encodeFromBuffer,
+  decode: decode.decode,
+  decodeFromBuffer: decode.decodeFromBuffer
 };

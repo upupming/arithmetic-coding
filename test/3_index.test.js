@@ -16,4 +16,14 @@ describe('Package test', function() {
       originalText.should.eql(decodedText);
     });
   });
+  describe('Buffer support', function() {
+    it('should encode and decode Buffer okay', function() {
+      let data = Buffer.from('Example data', 'utf8');
+      let encoded = ariCoding.encodeFromBuffer(data);
+      // console.log(`encoded = ${encoded}`);
+      let decoded = ariCoding.decodeFromBuffer(encoded);
+      // console.log(`decoded = ${decoded}`);
+      data.should.eql(decoded);
+    });
+  });
 });

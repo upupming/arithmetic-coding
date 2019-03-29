@@ -9,7 +9,7 @@
 
 ## Installation
 
-Install as module:
+Install as module for API usage:
 
 ```js
 npm i arithmetic-coding
@@ -23,14 +23,26 @@ npm i -g arithmetic-coding
 
 ## API
 
-Simply call `encode` and `decode` function.
+From file path:
 
 ```js
 const ariCoding = require('arithmetic-coding');
-// Encode
+// Encode from file
 ariCoding.encode(__dirname + '/txt/long.txt', __dirname + '/txt/long-encoded.txt');
-// Decode
+// Decode from file
 ariCoding.decode(__dirname + '/txt/long-encoded.txt', __dirname + '/txt/long-decoded.txt');
+```
+
+From `Buffer`:
+
+```js
+let data = Buffer.from('Example data', 'utf8');
+// Encode from Buffer
+let encoded = encode.encodeFromBuffer(data);
+console.log(`encoded = ${encoded}`);
+// Decode from buffer
+let decoded = decode.decodeFromBuffer(encoded);
+console.log(`decoded = ${decoded}`);
 ```
 
 ## Command-line interface
@@ -48,7 +60,7 @@ Commands:
   decode|d [options] <file>  decode a file
 ```
 
-## About algorithm
+## About the algorithm
 
 1. [Wikipedia](https://en.wikipedia.org/wiki/Arithmetic_coding)
 2. [How to implement practical encoder/decoder](http://www.drdobbs.com/cpp/data-compression-with-arithmetic-encodin/240169251)

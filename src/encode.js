@@ -1,6 +1,7 @@
 const fs = require('fs');
 const FrequencyTable = require('./frequency-table');
 const BitOutputStream = require('./bit-output-stream');
+const BitOutputStreamToBuffer = require('./bit-output-stream-buffer');
 const ArithmeticEncoder = require('./arithmetic-encoder');
 
 const CACHE_SIZE = 20000;
@@ -32,7 +33,24 @@ function getFrequencies(inputfile) {
 }
 
 /**
- * Decode a file using arithmetic coding algorithm
+ * Returns a frequency table based on the bytes 
+ * in the given Buffer.
+ * Also contains an extra entry for symbol 256,
+ * whose frequency is set to 0.
+ * @param {Buffer} buffer 
+ */
+function getFrequenciesFromBuffer(buffer) {
+  let freqs = new FrequencyTable(
+    new Array(257).fill(0)
+  );
+  for (let byte of buffer) {
+    freqs.increment(byte);
+  }
+  return freqs;
+}
+
+/**
+ * Encode a file using arithmetic coding algorithm
  * @param {string} inputfile Absolute path of the input file
  * @param {string} outputfile Absolute path of the output file
  */
@@ -45,6 +63,22 @@ function encode(inputfile, outputfile) {
   
   writeFrequencies(bitout, freqs);
   compress(freqs, inputfile, bitout);
+}
+
+/**
+ * Encode a Buffer using arithmetic coding algorithm
+ * @param {Buffer} inBuffer Input buffer
+ */
+function encodeFromBuffer(inBuffer) {
+  let freqs = getFrequenciesFromBuffer(inBuffer);
+  // EOF symbol gets a frequency of 1
+  freqs.increment(256);
+  
+  const bitout = new BitOutputStreamToBuffer();
+  
+  writeFrequencies(bitout, freqs);
+  compressFromBuffer(freqs, inBuffer, bitout);
+  return bitout.buffer;
 }
 
 /**
@@ -99,7 +133,26 @@ function compress(freqs, inputfile, bitout) {
   // console.log('Encoded okay!');
 }
 
+/**
+ * 
+ * @param {FrequencyTable} freqs 
+ * @param {Buffer} inBuffer 
+ * @param {BitOutputStreamToBuffer} bitout 
+ */
+function compressFromBuffer(freqs, inBuffer, bitout) {
+  let enc = new ArithmeticEncoder(32, bitout);
+  for (let byte of inBuffer) {
+    enc.write(freqs, byte);
+  }
+  // EOF
+  enc.write(freqs, 256);
+  // Flush remaining code bit
+  enc.finish();
+  // console.log('Encoded okay!');
+}
+
 module.exports = {
   getFrequencies,
-  encode
+  encode,
+  encodeFromBuffer
 };
