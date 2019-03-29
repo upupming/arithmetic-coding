@@ -3,6 +3,8 @@ const FrequencyTable = require('./frequency-table');
 const BitOutputStream = require('./bit-output-stream');
 const ArithmeticEncoder = require('./arithmetic-encoder');
 
+const CACHE_SIZE = 20000;
+
 /**
  * Returns a frequency table based on the bytes 
  * in the given file.
@@ -15,7 +17,7 @@ function getFrequencies(inputfile) {
   let freqs = new FrequencyTable(
     new Array(257).fill(0)
   );
-  const temp = Buffer.alloc(100);
+  const temp = Buffer.alloc(CACHE_SIZE);
   let bytesRead;
   for (;;) {
     if((bytesRead = fs.readSync(input, temp, 0, temp.length, null)) === 0) {
@@ -80,7 +82,7 @@ function compress(freqs, inputfile, bitout) {
   let enc = new ArithmeticEncoder(32, bitout);
   let input = fs.openSync(inputfile, 'r');
   for(;;) {
-    const temp = Buffer.alloc(100);
+    const temp = Buffer.alloc(CACHE_SIZE);
     let bytesRead;
     if ((bytesRead = fs.readSync(input, temp, 0, temp.length, null)) === 0) {
       break;

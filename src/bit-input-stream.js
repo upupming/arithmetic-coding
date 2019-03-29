@@ -1,4 +1,7 @@
 const fs = require('fs');
+
+const CACHE_SIZE = 20000;
+
 /**
  * A stream where bits can be read. 
  * Because they come from an underlying byte stream,
@@ -21,6 +24,9 @@ module.exports = class BitInputStream {
     // Number of accumulated bits in the current byte,
     // always in range [0, 7)
     this._numbitsremaining = 0;
+
+    this._cachedBytes = Buffer.alloc(0);
+    this._streamEnded = false;
   }
 
   /**
@@ -34,16 +40,22 @@ module.exports = class BitInputStream {
       return -1;
     }
     if (this._numbitsremaining === 0) {
-      // console.log(`this._numbitsremaining0 = ${this._numbitsremaining}`);
-      let temp = Buffer.alloc(1);
-      let numOfBytesRead = fs.readSync(this._input, temp, 0, 1, null);
-      // console.log(`numOfBytes read: ${numOfBytesRead}`);
-      // console.log(`position = ${this._position}`);
-      if (numOfBytesRead === 0) {
-        this._currentbyte = -1;
-        return -1;
+      if (this._cachedBytes.length === 0) {
+        if (this._streamEnded) {
+          this._currentbyte = -1;
+          return -1;
+        } else {
+          let temp = Buffer.alloc(CACHE_SIZE);
+          let numOfBytesRead = fs.readSync(this._input, temp, 0, CACHE_SIZE, null);
+          this._cachedBytes = Buffer.concat([this._cachedBytes, temp], numOfBytesRead);
+          if (numOfBytesRead < CACHE_SIZE) {
+            this._streamEnded = true;
+          }
+        }
       }
-      this._currentbyte = temp[0];
+      // console.log(`this._cachedBytes = ${this._cachedBytes}`);
+      this._currentbyte = this._cachedBytes[0];
+      this._cachedBytes = this._cachedBytes.slice(1);
       // console.log('Byte read:', temp);
       // console.log(this._currentbyte);
       this._numbitsremaining = 8;
@@ -54,7 +66,7 @@ module.exports = class BitInputStream {
     this._numbitsremaining -= 1;
     // console.log(`this._currentbyte = ${this._currentbyte}`);
     // console.log(`this._numbitsremaining = ${this._numbitsremaining}`);
-    return (this._currentbyte >> this._numbitsremaining) & 1; 
+    return (this._currentbyte >> this._numbitsremaining) & 1;
   }
 
   readNoEOF() {
