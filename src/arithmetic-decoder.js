@@ -1,4 +1,3 @@
-const Long = require('long');
 const assert = require('assert');
 
 module.exports = class ArithmeticDecoder {
@@ -25,25 +24,25 @@ module.exports = class ArithmeticDecoder {
     this._num_state_bits = numbits;
     // console.log(`this._num_state_bits: ${this._num_state_bits}`);
     // Maximum range (high+1-low) during coding (trivial), which is 2^num_state_bits = 1000...000.
-    this._full_range = new Long(1, 0).shiftLeft(numbits);
+    this._full_range = 1 << numbits >>> 0;
     // console.log(`this._full_range: ${this._full_range.toString(16)}`);
     // The top bit at width num_state_bits, which is 0100...000.
-    this._half_range = this._full_range.shiftRightUnsigned(1); // Non-zero
+    this._half_range = this._full_range >>> 1;
     // The second highest bit at width num_state_bits, which is 0010...000. This is zero when num_state_bits=1.
-    this._quarter_range = this._half_range.shiftRightUnsigned(1); // Can be zero
+    this._quarter_range = this._half_range >>> 1; // Can be zero
     // Minimum range (high+1-low) during coding (non-trivial), which is 0010...010.
-    this._minimum_range = this._quarter_range.add(2); // At least 2
+    this._minimum_range = this._quarter_range + 2; // At least 2
     // Maximum allowed total from a frequency table at all times during coding. This differs from Java
     // and C++ because Python's native bigint avoids constraining the size of intermediate computations.
     this._maximum_total = this._minimum_range;
     // console.log(`this._maximum_total: ${this._maximum_total.toString(16)}`);
     // Bit mask of num_state_bits ones, which is 0111...111.
-    this._state_mask = this._full_range.sub(1);
+    this._state_mask = this._full_range - 1;
     // console.log(`this._state_mask: ${this._state_mask.toString(16)}`);
 
     // -- State fields --
     // Low end of this arithmetic coder's current range. Conceptually has an infinite number of trailing 0s.
-    this._low = new Long(0, 0);
+    this._low = 0;
     // console.log(`this._low: ${this._low.toString(16)}`);
     // High end of this arithmetic coder's current range. Conceptually has an infinite number of trailing 1s.
     this._high = this._state_mask;
@@ -53,9 +52,9 @@ module.exports = class ArithmeticDecoder {
     // The underlying bit input stream.
     this._input = bitin;
     // The current raw code bits being buffered, which is always in the range [low, high].
-    this._code = new Long(0, 0);
+    this._code = 0;
     for (let i = 0; i < this._num_state_bits; i++) {
-      this._code = this._code.shiftLeft(1).or(this.readCodeBit());
+      this._code = (this._code << 1)  | this.readCodeBit();
       // console.log(`this._code_init = ${this._code}`);
     }
     // console.log(`this._code = ${this._code}`);
@@ -69,17 +68,19 @@ module.exports = class ArithmeticDecoder {
   read(freqs) {
     // Translate from coding range scale to frequency table scale
     let total = freqs.total;
-    if (this._maximum_total.lessThan(total)) {
+    if (this._maximum_total >>> 0 < total >>> 0) {
       throw RangeError('Cannot decode symbol because total is too large');
     }
-    let range = this._high.sub(this._low).add(1);
-    let offset = this._code.sub(this._low);
-    let value = offset.add(1).mul(total).sub(1).div(range);
+    let range = ((this._high - this._low) + 1) >>> 0;
+    let offset = this._code - this._low;
+    let value = Math.floor((((offset + 1) * total) - 1) / range);
     // console.log(`this._code_cal = ${this._code}, offset = ${offset}, value = ${value}`);
-    assert(value.mul(range).div(total).lessThanOrEqual(offset));
+    assert(Math.floor((value * range) / total) >>> 0 <= offset >>> 0);
+    // console.log(`range = ${range.toString(16)}`);
+    // console.log(`offset = ${offset.toString(16)}`);
     // console.log(`value = ${value.toString(16)}`);
-    // console.log(`total = ${total.toString(16)}`);
-    assert(value.greaterThanOrEqual(0) && value.lessThan(total));
+    // console.log(`total = ${total.toString(16)}, ${typeof total}`);
+    assert((value >>> 0 >= 0) && (value >>> 0 < total >>> 0));
 
     // A kind of binary search. 
     // Find highest symbol such that freqs.get_low(symbol) <= value.
@@ -89,7 +90,7 @@ module.exports = class ArithmeticDecoder {
     while (end - start > 1) {
       let middle = (start + end) >>> 1;
       // console.log(`freqs.getLow(middle) = ${freqs.getLow(middle)}`);
-      if (value.lessThan(freqs.getLow(middle))) {
+      if (value >>> 0 < freqs.getLow(middle)) {
         end = middle;
       } else {
         start = middle;
@@ -101,11 +102,11 @@ module.exports = class ArithmeticDecoder {
 
     let symbol = start;
     assert(
-      range.mul(freqs.getLow(symbol)).div(total).lessThanOrEqual(offset) &&
-      offset.lessThan(range.mul(freqs.getHigh(symbol)).div(total))
+      (Math.floor((range * (freqs.getLow(symbol))) / (total)) >>> 0 <= offset >>> 0) &&
+      offset >>> 0 <= Math.floor(range * (freqs.getHigh(symbol)) / (total)) >>> 0
     );
     this.update(freqs, symbol);
-    if (!(this._low.lessThanOrEqual(this._code) && this._code.lessThanOrEqual(this._high))) {
+    if (!(this._low >>> 0 <= this._code >>> 0 && this._code >>> 0 <= this._high >>> 0)) {
       throw new RangeError('Code out of range');
     }
     // console.log('symbol', symbol);
@@ -141,12 +142,16 @@ module.exports = class ArithmeticDecoder {
     let low = this._low;
     let high = this._high;
     // console.log(`======== Updating ${symbol} =========`);
-    // console.log(`this._low = ${this._low.toString(16)}`, `this._high = ${this._high.toString(16)}`);
-    if (low.greaterThanOrEqual(high) || low.and(this._state_mask).notEquals(low) || high.and(this._state_mask).notEquals(high)) {
-      throw RangeError('Low or high out of range');
+    // console.log(`this._low = ${this._low.toString(16)}`);
+    // console.log(`this._high = ${this._high.toString(16)}`);
+    // console.log(`low & this._state_mask = ${low & this._state_mask.toString(16)}`);
+    // console.log(`high & (this._state_mask) = ${high & (this._state_mask).toString(16)}`);
+    if (low >>> 0 >= high >>> 0 || ((low & this._state_mask) !== low) || ((high & (this._state_mask)) !== high)) {
+      throw RangeError(`Low or high out of range, low = ${low}, high = ${high}`);
     }
-    let range = high.sub(low).add(1);
-    if (!(this._minimum_range.lessThanOrEqual(range) && range.lessThanOrEqual(this._full_range))) {
+    let range = high - low + 1;
+    // console.log(`range = ${range.toString(16)}`);
+    if (!(this._minimum_range >>> 0 <= range >>> 0 && range >>> 0 <= this._full_range >>> 0)) {
       throw RangeError('Range out of range');
     }
 
@@ -154,47 +159,49 @@ module.exports = class ArithmeticDecoder {
     let total = freqs.total;
     let symlow = freqs.getLow(symbol);
     let symhigh = freqs.getHigh(symbol);
-    // console.log(`symlow = ${symlow.toString(16)}`, `symhigh = ${symhigh.toString(16)}`);
-    // console.log(`total = ${total}`);
+    // console.log(`symlow = ${symlow.toString(16)}`);
+    // console.log(`symhigh = ${symhigh.toString(16)}`);
     if (symlow === symhigh) {
       throw Error('Symbol has zero frequency');
     }
-    if (this._maximum_total.lessThan(total)) {
+    if (this._maximum_total >>> 0 <= total >>> 0) {
       throw Error('Cannot code symbol because total is too large');
     }
 
     // Update 
-    let newlow = low.add(range.mul(symlow).div(total));
-    let newhigh = low.add(range.mul(symhigh).div(total)).sub(1);
+    // console.log(`total = ${total.toString(16)}`);
+    let newlow = low + Math.floor(range * symlow / total);
+    let newhigh = low + Math.floor(range * symhigh / total) - 1;
+    // console.log(`newlow = ${newlow.toString(16)}`);
+    // console.log(`newhigh = ${newhigh.toString(16)}`);
     this._low = newlow;
     this._high = newhigh;
-    // console.log(`newlow = ${newlow.toString(16)}`, `newhigh = ${newhigh.toString(16)}`);
 
     // While low and high have the same top bit value, shift them out
-    while (((this._low.xor(this._high)).and(this._half_range)).equals(0)) {
+    while (((this._low ^ this._high) & (this._half_range)) === 0) {
       this._shift();
-      this._low = this._low.shiftLeft(1).and(this._state_mask);
-      this._high = this._high.shiftLeft(1).and(this._state_mask).or(1);
+      this._low = (this._low << 1) & (this._state_mask);
+      this._high = (this._high << 1) & (this._state_mask) | 1;
     }
 
     // Now low's top bit must be 0 and high's top bit must be 1
 
     // While low's top two bits are 01 and high's are 10, delete the second highest bit of both
-    while ((this._low.and(this._high.not()).and(this._quarter_range)).notEquals(0)) {
+    while ((this._low & (~this._high) & (this._quarter_range)) !== 0) {
       this._underflow();
-      this._low = this._low.shiftLeft(1).xor(this._half_range);
-      this._high = this._high.xor(this._half_range).shiftLeft(1).or(this._half_range).or(1);
+      this._low = (this._low << 1) ^ (this._half_range);
+      this._high = ((this._high ^ (this._half_range)) << 1) | this._half_range | 1;
     }
   }
 
   _shift() {
-    this._code = this._code.shiftLeft(1).and(this._state_mask).or(this.readCodeBit());
+    this._code = (this._code << 1) & (this._state_mask) | (this.readCodeBit());
     // console.log(`this._code_shift = ${this._code}`);
   }
   _underflow() {
-    this._code = this._code.and(this._half_range).or(
-      this._code.shiftLeft(1).and(this._state_mask.shiftRightUnsigned(1))
-    ).or(this.readCodeBit());
+    this._code = this._code & (this._half_range) | (
+      this._code << 1 & (this._state_mask >>> 1)
+    ) | (this.readCodeBit());
     // console.log(`this._code_underflow = ${this._code}`);
   }
   finish() {

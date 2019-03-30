@@ -2,8 +2,9 @@ const fs = require('fs');
 const FrequencyTable = require('./frequency-table');
 const BitInputStream = require('./bit-input-stream');
 const BitInputStreamFromBuffer = require('./bit-input-stream-buffer');
-const Long = require('long');
 const ArithmeticDecoder = require('./arithmetic-decoder');
+
+const NUM_OF_BITS = 31;
 
 /**
  * Decode a file using arithmetic coding algorithm
@@ -34,18 +35,18 @@ function decodeFromBuffer(inBuffer) {
 
 function readFrequencies(bitin) {
   function readInt(n) {
-    let result = new Long(0, 0);
+    let result = 0;
     for (let i = 0; i < n; i++) {
       let tmp = bitin.readNoEOF();
       // console.log(tmp);
-      result = result.shiftLeft(1).or(tmp); // Big endian
+      result = result << 1  | tmp; // Big endian
     }
     return result;
   }
   let freqs = [];
   // let acc = 0;
   for (let i = 0; i < 256; i++) {
-    freqs[i] = readInt(32).toNumber();
+    freqs[i] = readInt(NUM_OF_BITS);
     // console.log(`freqs[${i}] = `, freqs[i]);
     // acc += freqs[i];
     // console.log(`acc = ${acc}`);
@@ -59,7 +60,7 @@ function readFrequencies(bitin) {
 function decompress(freqs, bitin, outputfile) {
   let output = fs.openSync(outputfile, 'w');
   let bytes = [];
-  const dec = new ArithmeticDecoder(32, bitin);
+  const dec = new ArithmeticDecoder(NUM_OF_BITS, bitin);
   for (;;) {
     let symbol = dec.read(freqs);
     // EOF symbol
@@ -83,7 +84,7 @@ function decompress(freqs, bitin, outputfile) {
 function decompressToBuffer(freqs, bitin) {
   let buffer = Buffer.alloc(0);
   let bytes = [];
-  const dec = new ArithmeticDecoder(32, bitin);
+  const dec = new ArithmeticDecoder(NUM_OF_BITS, bitin);
   for (;;) {
     let symbol = dec.read(freqs);
     // EOF symbol

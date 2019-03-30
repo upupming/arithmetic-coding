@@ -5,6 +5,7 @@ const BitOutputStreamToBuffer = require('./bit-output-stream-buffer');
 const ArithmeticEncoder = require('./arithmetic-encoder');
 
 const CACHE_SIZE = 20000;
+const NUM_OF_BITS = 31;
 
 /**
  * Returns a frequency table based on the bytes 
@@ -89,7 +90,7 @@ function encodeFromBuffer(inBuffer) {
 function writeFrequencies(bitout, freqs) {
   for (let i = 0; i < 256; i++) {
     // console.log(freqs);
-    write_int(bitout, 32, freqs.get(i));
+    write_int(bitout, NUM_OF_BITS, freqs.get(i));
   }
 }
 
@@ -113,7 +114,7 @@ function write_int(bitout, numbits, value) {
  * @param {BitOutputStream} bitout 
  */
 function compress(freqs, inputfile, bitout) {
-  let enc = new ArithmeticEncoder(32, bitout);
+  let enc = new ArithmeticEncoder(NUM_OF_BITS, bitout);
   let input = fs.openSync(inputfile, 'r');
   for(;;) {
     const temp = Buffer.alloc(CACHE_SIZE);
@@ -140,7 +141,7 @@ function compress(freqs, inputfile, bitout) {
  * @param {BitOutputStreamToBuffer} bitout 
  */
 function compressFromBuffer(freqs, inBuffer, bitout) {
-  let enc = new ArithmeticEncoder(32, bitout);
+  let enc = new ArithmeticEncoder(NUM_OF_BITS, bitout);
   for (let byte of inBuffer) {
     enc.write(freqs, byte);
   }

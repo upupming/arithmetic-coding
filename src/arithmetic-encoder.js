@@ -1,5 +1,3 @@
-var Long = require('long');
-
 module.exports = class ArithmeticEncoder {
   /**
    * 
@@ -24,25 +22,25 @@ module.exports = class ArithmeticEncoder {
     this._num_state_bits = numbits;
     // console.log(`this._num_state_bits: ${this._num_state_bits}`);
     // Maximum range (high+1-low) during coding (trivial), which is 2^num_state_bits = 1000...000.
-    this._full_range = new Long(1, 0).shiftLeft(numbits);
+    this._full_range = (1 << numbits) >>> 0;
     // console.log(`this._full_range: ${this._full_range.toString(16)}`);
     // The top bit at width num_state_bits, which is 0100...000.
-    this._half_range = this._full_range.shiftRightUnsigned(1); // Non-zero
+    this._half_range = this._full_range >>> 1; // Non-zero
     // The second highest bit at width num_state_bits, which is 0010...000. This is zero when num_state_bits=1.
-    this._quarter_range = this._half_range.shiftRightUnsigned(1); // Can be zero
+    this._quarter_range = this._half_range >>> 1; // Can be zero
     // Minimum range (high+1-low) during coding (non-trivial), which is 0010...010.
-    this._minimum_range = this._quarter_range.add(2); // At least 2
+    this._minimum_range = this._quarter_range + 2; // At least 2
     // Maximum allowed total from a frequency table at all times during coding. This differs from Java
     // and C++ because Python's native bigint avoids constraining the size of intermediate computations.
     this._maximum_total = this._minimum_range;
     // console.log(`this._maximum_total: ${this._maximum_total.toString(16)}`);
     // Bit mask of num_state_bits ones, which is 0111...111.
-    this._state_mask = this._full_range.sub(1);
+    this._state_mask = this._full_range - 1;
     // console.log(`this._state_mask: ${this._state_mask.toString(16)}`);
 
     // -- State fields --
     // Low end of this arithmetic coder's current range. Conceptually has an infinite number of trailing 0s.
-    this._low = new Long(0, 0);
+    this._low = 0;
     // console.log(`this._low: ${this._low.toString(16)}`);
     // High end of this arithmetic coder's current range. Conceptually has an infinite number of trailing 1s.
     this._high = this._state_mask;
@@ -75,14 +73,14 @@ module.exports = class ArithmeticEncoder {
     // console.log(`======== Updating ${symbol} =========`);
     // console.log(`this._low = ${this._low.toString(16)}`);
     // console.log(`this._high = ${this._high.toString(16)}`);
-    // console.log(`low.and(this._state_mask) = ${low.and(this._state_mask).toString(16)}`);
-    // console.log(`high.and(this._state_mask) = ${high.and(this._state_mask).toString(16)}`);
-    if (low.greaterThanOrEqual(high) || low.and(this._state_mask).notEquals(low) || high.and(this._state_mask).notEquals(high)) {
-      throw RangeError('Low or high out of range');
+    // console.log(`low & this._state_mask = ${low & this._state_mask.toString(16)}`);
+    // console.log(`high & (this._state_mask) = ${high & (this._state_mask).toString(16)}`);
+    if (low >>> 0 >= high >>> 0 || ((low & this._state_mask) !== low) || ((high & (this._state_mask)) !== high)) {
+      throw RangeError(`Low or high out of range, low = ${low}, high = ${high}`);
     }
-    let range = high.sub(low).add(1);
+    let range = high - low + 1;
     // console.log(`range = ${range.toString(16)}`);
-    if (!(this._minimum_range.lessThanOrEqual(range) && range.lessThanOrEqual(this._full_range))) {
+    if (!(this._minimum_range >>> 0 <= range >>> 0 && range >>> 0 <= this._full_range >>> 0)) {
       throw RangeError('Range out of range');
     }
 
@@ -95,33 +93,33 @@ module.exports = class ArithmeticEncoder {
     if (symlow === symhigh) {
       throw Error('Symbol has zero frequency');
     }
-    if (this._maximum_total.lessThan(total)) {
+    if (this._maximum_total >>> 0 <= total >>> 0) {
       throw Error('Cannot code symbol because total is too large');
     }
 
     // Update 
     // console.log(`total = ${total.toString(16)}`);
-    let newlow = low.add(range.mul(symlow).div(total));
-    let newhigh = low.add(range.mul(symhigh).div(total)).sub(1); // total - 1
+    let newlow = low + Math.floor(range * symlow / total);
+    let newhigh = low + Math.floor(range * symhigh / total) - 1;
     // console.log(`newlow = ${newlow.toString(16)}`);
     // console.log(`newhigh = ${newhigh.toString(16)}`);
     this._low = newlow;
     this._high = newhigh;
 
     // While low and high have the same top bit value, shift them out
-    while (((this._low.xor(this._high)).and(this._half_range)).equals(0)) {
+    while (((this._low ^ this._high) & (this._half_range)) === 0) {
       this._shift();
-      this._low = this._low.shiftLeft(1).and(this._state_mask);
-      this._high = this._high.shiftLeft(1).and(this._state_mask).or(1);
+      this._low = (this._low << 1) & (this._state_mask);
+      this._high = (this._high << 1) & (this._state_mask) | 1;
     }
 
     // Now low's top bit must be 0 and high's top bit must be 1
 
     // While low's top two bits are 01 and high's are 10, delete the second highest bit of both
-    while ((this._low.and(this._high.not()).and(this._quarter_range)).notEquals(0)) {
+    while ((this._low & (~this._high) & (this._quarter_range)) !== 0) {
       this._underflow();
-      this._low = this._low.shiftLeft(1).xor(this._half_range);
-      this._high = this._high.xor(this._half_range).shiftLeft(1).or(this._half_range).or(1);
+      this._low = (this._low << 1) ^ (this._half_range);
+      this._high = ((this._high ^ (this._half_range)) << 1) | this._half_range | 1;
     }
   }
 
@@ -145,14 +143,14 @@ module.exports = class ArithmeticEncoder {
     this._output.close();
   }
   _shift() {
-    let bit = this._low.shiftRightUnsigned(this._num_state_bits - 1);
+    let bit = this._low >>> (this._num_state_bits - 1);
     // console.log(`bit = ${bit}`);
-    this._output.write(bit.toNumber());
+    this._output.write(bit);
 
     // Write out the saved underflow bits
     for (let i = 0; i < this._num_underflow; i++) {
-      // console.log(`bit.xor(1) = ${bit.xor(1)}`);
-      this._output.write(bit.xor(1).toNumber());
+      // console.log(`bit ^ 1 = ${bit ^ 1}`);
+      this._output.write(bit ^ 1);
     }
     this._num_underflow = 0;
   }
