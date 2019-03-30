@@ -1,9 +1,10 @@
 var fs = require('fs');
 require('should');
 const decode = require('../src/decode');
+const fileInfo = require('./file-info');
 
 describe('decode', function () {
-  it('should decode okay', function () {
+  it('should decode okay ' + fileInfo(__dirname + '/txt/short.txt'), function () {
     decode.decode(__dirname + '/txt/short-encoded.txt', __dirname + '/txt/short-decoded.txt');
   });
   it('should decode & encode equal', function () {

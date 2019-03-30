@@ -47,7 +47,7 @@ module.exports = class BitInputStream {
         } else {
           let temp = Buffer.alloc(CACHE_SIZE);
           let numOfBytesRead = fs.readSync(this._input, temp, 0, CACHE_SIZE, null);
-          this._cachedBytes = Buffer.concat([this._cachedBytes, temp], numOfBytesRead);
+          this._cachedBytes = temp.slice(0, numOfBytesRead);
           if (numOfBytesRead < CACHE_SIZE) {
             this._streamEnded = true;
           }

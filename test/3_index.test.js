@@ -1,9 +1,10 @@
 require('should');
 const ariCoding = require('../src/index');
 var fs = require('fs');
+const fileInfo = require('./file-info');
 
 describe('Package test', function() {
-  describe('encode & decode', function() {
+  describe('encode & decode ' + fileInfo(__dirname + '/txt/long.txt'), function() {
     it('should encode', function() {
       ariCoding.encode(__dirname + '/txt/long.txt', __dirname + '/txt/long-encoded.txt');
     });

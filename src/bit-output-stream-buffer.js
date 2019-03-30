@@ -7,7 +7,7 @@
 module.exports = class BitOutputStreamToBuffer {
   constructor() {
     // The underlying file stream to write to
-    this._buffer = Buffer.alloc(0);
+    this._bytes = [];
     // The accumulated bits for the current byte,
     // always in range [0x00, 0xFF]
     this._currentbyte = 0;
@@ -26,7 +26,7 @@ module.exports = class BitOutputStreamToBuffer {
     this._currentbyte = (this._currentbyte << 1) | b;
     this._numbitsfilled += 1;
     if (this._numbitsfilled === 8) {
-      this._buffer = Buffer.concat([this._buffer, Buffer.from([this._currentbyte])]);
+      this._bytes.push(this._currentbyte);
       this._currentbyte = 0;
       this._numbitsfilled = 0;
     }
@@ -37,6 +37,6 @@ module.exports = class BitOutputStreamToBuffer {
     }
   }
   get buffer() {
-    return this._buffer;
+    return Buffer.from(this._bytes);
   }
 };

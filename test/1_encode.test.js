@@ -1,8 +1,9 @@
 require('should');
 const encode = require('../src/encode');
+const fileInfo = require('./file-info');
 
 describe('encode', function() {
-  describe('getFrequencies', function() {
+  describe('getFrequencies ' + fileInfo(__dirname + '/txt/short.txt'), function() {
     it('should construct frequency table', function() {
       let freqs = encode.getFrequencies(__dirname + '/txt/short.txt');
       // console.log((Buffer.from('t'))[0]);
@@ -16,7 +17,7 @@ describe('encode', function() {
       (() => {let freqs = encode.getFrequencies(__dirname + '/txt/nosuchfile.txt');}).should.throw(Error);
     });
   });
-  describe('encode', function() {
+  describe('encode ' + fileInfo(__dirname + '/txt/short.txt'), function() {
     it('should encode okay', function() {
       encode.encode(__dirname + '/txt/short.txt', __dirname + '/txt/short-encoded.txt');
     });

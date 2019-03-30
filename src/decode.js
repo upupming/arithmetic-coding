@@ -58,6 +58,7 @@ function readFrequencies(bitin) {
 
 function decompress(freqs, bitin, outputfile) {
   let output = fs.openSync(outputfile, 'w');
+  let bytes = [];
   const dec = new ArithmeticDecoder(32, bitin);
   for (;;) {
     let symbol = dec.read(freqs);
@@ -68,8 +69,9 @@ function decompress(freqs, bitin, outputfile) {
     }
     // console.log(`writing ${symbol}`);
     // output.wr();
-    fs.writeSync(output, Buffer.from([symbol]), 0, 1, null);
+    bytes.push(symbol);
   }
+  fs.writeSync(output, Buffer.from(bytes), 0, bytes.length, null);
   fs.closeSync(output);
 }
 
@@ -80,6 +82,7 @@ function decompress(freqs, bitin, outputfile) {
  */
 function decompressToBuffer(freqs, bitin) {
   let buffer = Buffer.alloc(0);
+  let bytes = [];
   const dec = new ArithmeticDecoder(32, bitin);
   for (;;) {
     let symbol = dec.read(freqs);
@@ -89,8 +92,9 @@ function decompressToBuffer(freqs, bitin) {
       break;
     }
     // console.log(`writing ${symbol}`);
-    buffer = Buffer.concat([buffer, Buffer.from([symbol])]);
+    bytes.push(symbol);
   }
+  buffer = Buffer.from(bytes);
   return buffer;
 }
 

@@ -2,8 +2,9 @@ const cmd = require('./cmd');
 const path = require('path');
 require('should');
 const fs = require('fs');
+const fileInfo = require('./file-info');
 
-describe('CLI test', () => {
+describe('CLI test ' + fileInfo(__dirname + '/txt/long.txt'), () => {
   it('should print help if input is invalid', async () => {
     try {
       await cmd.execute(
