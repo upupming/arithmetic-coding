@@ -60,6 +60,17 @@ Commands:
   decode|d [options] <file>  decode a file
 ```
 
+## Performance
+
+You can see the latest [travis test](https://travis-ci.com/upupming/arithmetic-coding) for running time used by each test.
+
+Some benchmarks are shown below:
+
+| File size (Bytes) | total time used | encode time | decode time |
+| ----------------- | --------------- | ----------- | ----------- |
+| 60640             | 110ms           | small       | 110ms       |
+| 2130640           | 7419ms          |             |             |
+
 ## About the algorithm
 
 1. [Wikipedia](https://en.wikipedia.org/wiki/Arithmetic_coding)
