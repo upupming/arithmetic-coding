@@ -1,9 +1,10 @@
 # arithmetic-coding
 
+<a href="https://www.npmjs.com/package/arithmetic-coding"><img src="https://img.shields.io/npm/v/arithmetic-coding.svg?style=flat-square" alt="npm"></a>
+<a href="https://www.codacy.com/app/upupming/arithmetic-coding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=upupming/arithmetic-coding&amp;utm_campaign=Badge_Grade"><img alt="Codacy grade" src="https://img.shields.io/codacy/grade/c26ae1fe65e8470da349e8f9bd3cd71f.svg?style=flat-square"></a>
+<a href="https://www.codacy.com/app/upupming/arithmetic-coding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=upupming/arithmetic-coding&amp;utm_campaign=Badge_Coverage"><img src="https://img.shields.io/codacy/coverage/c26ae1fe65e8470da349e8f9bd3cd71f.svg?style=flat-square"/></a>
 <a href="https://travis-ci.com/upupming/arithmetic-coding/builds"><img src="https://img.shields.io/travis/com/upupming/arithmetic-coding.svg?style=popout-square" alt="travis build status"></a>
 <a href="https://github.com/upupming/arithmetic-coding/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square" alt="License"></a>
-<a href="https://coveralls.io/github/upupming/arithmetic-coding?branch=master"><img src="https://img.shields.io/coveralls/github/upupming/arithmetic-coding.svg?style=popout-square" alt="Coveralls"></a>
-<a href="https://www.npmjs.com/package/arithmetic-coding"><img src="https://img.shields.io/npm/v/arithmetic-coding.svg?style=flat-square" alt="npm"></a>
 
 - English Documentation
 - [Chinese Documentation](./README-zh.md)
