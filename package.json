@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha --timeout 100000 && npm run clean",
     "clean": "rm test/txt/*-encoded.txt test/txt/*-decoded.txt",
-    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- --timeout 100000",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "patch": "npm version patch && npm publish && git push origin master && git push origin --tags",
     "minor": "npm version minor && npm publish && git push origin master && git push origin --tags",

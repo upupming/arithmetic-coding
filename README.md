@@ -76,10 +76,10 @@ You can see the latest [travis test](https://travis-ci.com/upupming/arithmetic-c
 
 Some benchmarks are shown below:
 
-| File size (Bytes) | total time used | encode time | decode time |
-| ----------------- | --------------- | ----------- | ----------- |
-| 60640             | 110ms           | small       | 110ms       |
-| 2130640           | 7419ms          |             |             |
+| File size (Bytes) | total time | encode time | decode time |
+| ----------------- | ---------- | ----------- | ----------- |
+| 60640             | 110ms      | small       | 110ms       |
+| 2130640           | 2940ms     | 426ms       | 2514ms      |
 
 ## About the algorithm
 
