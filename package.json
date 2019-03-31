@@ -1,6 +1,6 @@
 {
   "name": "arithmetic-coding",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Arithmetic coding implementation",
   "main": "src/index.js",
   "bin": {
