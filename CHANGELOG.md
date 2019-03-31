@@ -1,5 +1,11 @@
 # arithmetic-coding CHANGELOG
 
+## v1.2.2
+
+2019.03.31
+
+- Clean up dependencies.
+
 ## v1.2.1
 
 2019.03.31
