@@ -11,9 +11,9 @@
     "clean": "rm test/txt/*-encoded.txt test/txt/*-decoded.txt",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
-    "patch": "npm version patch && git push origin master && git push origin --tags",
-    "minor": "npm version minor && git push origin master && git push origin --tags",
-    "major": "npm version major && git push origin master && git push origin --tags"
+    "patch": "npm version patch && npm publish && git push origin master && git push origin --tags",
+    "minor": "npm version minor && npm publish && git push origin master && git push origin --tags",
+    "major": "npm version major && npm publish && git push origin master && git push origin --tags"
   },
   "repository": {
     "type": "git",

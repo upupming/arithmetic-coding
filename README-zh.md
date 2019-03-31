@@ -5,18 +5,18 @@
 <a href="https://coveralls.io/github/upupming/arithmetic-coding?branch=master"><img src="https://img.shields.io/coveralls/github/upupming/arithmetic-coding.svg?style=popout-square" alt="Coveralls"></a>
 <a href="https://www.npmjs.com/package/arithmetic-coding"><img src="https://img.shields.io/npm/v/arithmetic-coding.svg?style=flat-square" alt="npm"></a>
 
-- English Documentation
-- [Chinese Documentation](./README-zh.md)
+- [英文文档](./README.md)
+- 中文文档
 
-## Installation
+## 安装
 
-Install as module for API usage:
+安装为模块供 API 调用：
 
 ```js
 npm i arithmetic-coding
 ```
 
-Or install as global CLI:
+或者全局安装为命令行界面：
 
 ```js
 npm i -g arithmetic-coding
@@ -24,29 +24,29 @@ npm i -g arithmetic-coding
 
 ## API
 
-From file path:
+通过指定文件目录调用：
 
 ```js
 const ariCoding = require('arithmetic-coding');
-// Encode from file
+// 从文件编码
 ariCoding.encode(__dirname + '/txt/long.txt', __dirname + '/txt/long-encoded.txt');
-// Decode from file
+// 从文件解码
 ariCoding.decode(__dirname + '/txt/long-encoded.txt', __dirname + '/txt/long-decoded.txt');
 ```
 
-From `Buffer`:
+通过传入 `Buffer` 调用：
 
 ```js
 let data = Buffer.from('Example data', 'utf8');
-// Encode from Buffer
+// 从 Buffer 编码
 let encoded = encode.encodeFromBuffer(data);
 console.log(`encoded = ${encoded}`);
-// Decode from Buffer
+// 从 Buffer 解码
 let decoded = decode.decodeFromBuffer(encoded);
 console.log(`decoded = ${decoded}`);
 ```
 
-## Command-line interface
+## 命令行界面
 
 ```js
 $ ari-coding -h
@@ -70,19 +70,19 @@ Options:
   -h, --help           output usage information
 ```
 
-## Performance
+## 性能
 
-You can see the latest [travis test](https://travis-ci.com/upupming/arithmetic-coding) for running time used by each test.
+您可以查看 [travis 测试日志](https://travis-ci.com/upupming/arithmetic-coding) 得知最新版本的运行时间。
 
-Some benchmarks are shown below:
+一些运行测试结果如下：
 
-| File size (Bytes) | total time used | encode time | decode time |
+| 文件大小 (字节) | 总运行时间 | 编码时间 | 解码时间 |
 | ----------------- | --------------- | ----------- | ----------- |
-| 60640             | 110ms           | small       | 110ms       |
+| 60640             | 110ms           | 极小       | 110ms       |
 | 2130640           | 7419ms          |             |             |
 
-## About the algorithm
+## 关于算数编码算法
 
-1. [Wikipedia](https://en.wikipedia.org/wiki/Arithmetic_coding)
-2. [How to implement practical encoder/decoder](http://www.drdobbs.com/cpp/data-compression-with-arithmetic-encodin/240169251)
-3. [Reference-arithmetic-coding on GitHub](https://github.com/nayuki/Reference-arithmetic-coding)
+1. [维基百科](https://en.wikipedia.org/wiki/Arithmetic_coding)
+2. [编码/解码的实际可用的实现](http://www.drdobbs.com/cpp/data-compression-with-arithmetic-encodin/240169251)
+3. [GitHub 上 Reference-arithmetic-coding 的源代码](https://github.com/nayuki/Reference-arithmetic-coding)
