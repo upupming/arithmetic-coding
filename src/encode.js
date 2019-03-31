@@ -118,8 +118,8 @@ function compress(freqs, inputfile, bitout) {
   let input = fs.openSync(inputfile, 'r');
   for(;;) {
     const temp = Buffer.alloc(CACHE_SIZE);
-    let bytesRead;
-    if ((bytesRead = fs.readSync(input, temp, 0, temp.length, null)) === 0) {
+    let bytesRead = fs.readSync(input, temp, 0, temp.length, null);
+    if (bytesRead === 0) {
       break;
     } else {
       for (let i = 0; i < bytesRead; i++) {
