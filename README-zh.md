@@ -1,8 +1,8 @@
 # arithmetic-coding
 
 <a href="https://www.npmjs.com/package/arithmetic-coding"><img src="https://img.shields.io/npm/v/arithmetic-coding.svg?style=flat-square" alt="npm"></a>
-<a href="https://www.codacy.com/app/upupming/arithmetic-coding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=upupming/arithmetic-coding&amp;utm_campaign=Badge_Grade"><img alt="Codacy grade" src="https://img.shields.io/codacy/grade/c26ae1fe65e8470da349e8f9bd3cd71f.svg?style=flat-square"></a>
-<a href="https://www.codacy.com/app/upupming/arithmetic-coding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=upupming/arithmetic-coding&amp;utm_campaign=Badge_Coverage"><img src="https://img.shields.io/codacy/coverage/c26ae1fe65e8470da349e8f9bd3cd71f.svg?style=flat-square"/></a>
+<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square" alt="JavaScript Style Guide"></a>
+<a href="https://coveralls.io/github/upupming/arithmetic-coding?branch=master"><img src="https://img.shields.io/coveralls/github/upupming/arithmetic-coding.svg?style=flat-square" alt="Coveralls"></a>
 <a href="https://travis-ci.com/upupming/arithmetic-coding/builds"><img src="https://img.shields.io/travis/com/upupming/arithmetic-coding.svg?style=popout-square" alt="travis build status"></a>
 <a href="https://github.com/upupming/arithmetic-coding/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square" alt="License"></a>
 
@@ -30,9 +30,9 @@ npm i -g arithmetic-coding
 ```js
 const ariCoding = require('arithmetic-coding');
 // 从文件编码
-ariCoding.encode(__dirname + '/txt/long.txt', __dirname + '/txt/long-encoded.txt');
+ariCoding.encode(path.resolve('/txt/long.txt'), path.resolve('/txt/long-encoded.txt'));
 // 从文件解码
-ariCoding.decode(__dirname + '/txt/long-encoded.txt', __dirname + '/txt/long-decoded.txt');
+ariCoding.decode(path.resolve('/txt/long-encoded.txt'), path.resolve('/txt/long-decoded.txt'));
 ```
 
 通过传入 `Buffer` 调用：

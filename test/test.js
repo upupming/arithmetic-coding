@@ -1,6 +1,7 @@
-const encode = require('../src/encode');
-const decode = require('../src/decode');
+const encode = require('../src/encode')
+const decode = require('../src/decode')
+const path = require('path')
 
-encode.encode(__dirname + '/txt/short.txt', __dirname + '/txt/short-encoded.txt');
+encode.encode(path.resolve(__dirname, './txt/short.txt'), path.resolve(__dirname, './txt/short-encoded.txt'))
 
-decode.decode(__dirname + '/txt/short-encoded.txt', __dirname + '/txt/short-decoded.txt');
+decode.decode(path.resolve(__dirname, './txt/short-encoded.txt'), path.resolve(__dirname, './txt/short-decoded.txt'))
