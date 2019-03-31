@@ -16,7 +16,9 @@
     "major": "npm version major && npm publish && git push origin master && git push origin --tags"
   },
   "standard": {
-    "env": [ "mocha" ]
+    "env": [
+      "mocha"
+    ]
   },
   "repository": {
     "type": "git",
